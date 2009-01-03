@@ -2,12 +2,22 @@ var usuario = require('../schemas/usuario.js');
 var mongoose = require('mongoose');
 
 exports.getUsuarios = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin', 'gerente']
+  },
   handler: function(request, reply){
     var usuarios = usuario.find({});
     reply(usuarios);
   }
 }
 exports.getUsuarioId = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin', 'gerente']
+  },
   handler : function(request, reply){
     usuario.findOne({'_id' : request.params._id}, function(err, Usuario){
       if(!err && Usuario){
@@ -21,6 +31,11 @@ exports.getUsuarioId = {
   }
 }
 exports.getUsuarioIdPersonal = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin', 'gerente']
+  },
   handler : function(request, reply){
     usuario.findOne({'IdPersonal' : request.params.IdPersonal}, function(err, Usuario){
       if(!err && Usuario){
@@ -34,6 +49,11 @@ exports.getUsuarioIdPersonal = {
   }
 }
 exports.getUsuarioIdOrdenes = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin', 'gerente']
+  },
   handler : function(request, reply){
     usuario.findOne({'idOrdenes' : request.params.idOrdenes}, function(err, Usuario){
       if(!err && Usuario){
@@ -47,6 +67,11 @@ exports.getUsuarioIdOrdenes = {
   }
 }
 exports.getUsuarioName = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin', 'gerente']
+  },
   handler : function(request, reply){
     usuario.findOne({'nombre' : request.params.nombre}, function(err, Usuario){
       if(!err && Usuario){
@@ -63,7 +88,7 @@ exports.modifyUsuario = {
   auth: {
     mode:'required',
     strategy:'session',
-    scope: ['admin']
+    scope: ['admin', 'gerente', 'cliente']
   },
   handler: function(request, reply){
     usuario.update(
@@ -92,7 +117,7 @@ exports.deleteUsuario = {
   auth: {
     mode:'required',
     strategy:'session',
-    scope: ['admin']
+    scope: ['admin', 'gerente']
   },
   handler: function(request, reply){
     usuario.findOne({'_id' : request.params._id}, function(err, Usuario){
@@ -111,7 +136,7 @@ exports.createUsuario = {
   auth: {
     mode:'required',
     strategy:'session',
-    scope: ['admin']
+    scope: ['admin', 'gerente']
   },
   handler: function(request, reply){
     var newUsuario = new usuario({

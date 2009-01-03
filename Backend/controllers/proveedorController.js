@@ -2,12 +2,22 @@ var proveedor = require('../schemas/proveedor.js');
 var mongoose = require('mongoose');
 
 exports.getProveedores = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin', 'gerente']
+  },
   handler: function(request, reply){
     var proveedores = proveedor.find({});
     reply(proveedores);
   }
 }
 exports.getProveedorId = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin', 'gerente']
+  },
   handler : function(request, reply){
     proveedor.findOne({'_id' : request.params._id}, function(err, Proveedor){
       if(!err && Proveedor){
@@ -21,6 +31,11 @@ exports.getProveedorId = {
   }
 }
 exports.getProveedorInsumos = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin', 'gerente']
+  },
   handler : function(request, reply){
     proveedor.find({'idInsumo' : request.params.idInsumo}, function(err, Proveedor){
       if(!err && Proveedor){
@@ -34,6 +49,11 @@ exports.getProveedorInsumos = {
   }
 }
 exports.getProveedorBebidas = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin', 'gerente']
+  },
   handler : function(request, reply){
     proveedor.find({'idBebidas' : request.params.idBebidas}, function(err, Proveedor){
       if(!err && Proveedor){
@@ -47,6 +67,11 @@ exports.getProveedorBebidas = {
   }
 }
 exports.getProveedorName = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin', 'gerente']
+  },
   handler : function(request, reply){
     proveedor.find({'nombre' : request.params.idInsumo}, function(err, Proveedor){
       if(!err && Proveedor){
@@ -60,6 +85,11 @@ exports.getProveedorName = {
   }
 }
 exports.getProveedorContacto = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin', 'gerente']
+  },
   handler : function(request, reply){
     proveedor.find({'contacto' : request.params.contacto}, function(err, Proveedor){
       if(!err && Proveedor){
@@ -76,7 +106,7 @@ exports.modifyProveedor = {
   auth: {
     mode:'required',
     strategy:'session',
-    scope: ['admin']
+    scope: ['admin', 'gerente']
   },
   handler: function(request, reply){
     proveedor.update(
@@ -106,7 +136,7 @@ exports.deleteProveedor = {
   auth: {
     mode:'required',
     strategy:'session',
-    scope: ['admin']
+    scope: ['admin', 'gerente']
   },
   handler: function(request, reply){
     proveedor.findOne({'_id' : request.params._id}, function(err, Proveedor){
@@ -125,7 +155,7 @@ exports.createProveedor = {
   auth: {
     mode:'required',
     strategy:'session',
-    scope: ['admin']
+    scope: ['admin', 'gerente']
   },
   handler: function(request, reply){
     var newProveedor = new proveedor({

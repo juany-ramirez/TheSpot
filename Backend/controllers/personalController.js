@@ -2,12 +2,22 @@ var personal = require('../schemas/personal.js');
 var mongoose = require('mongoose');
 
 exports.getPersonal = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin', 'gerente']
+  },
   handler: function(request, reply){
     var _personal = personal.find({});
     reply(_personal);
   }
 }
 exports.getPersonalId = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin', 'gerente']
+  },
   handler : function(request, reply){
     personal.findOne({'_id' : request.params._id}, function(err, Personal){
       if(!err && Personal){
@@ -21,6 +31,11 @@ exports.getPersonalId = {
   }
 }
 exports.getPersonalUsuario = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin', 'gerente']
+  },
   handler : function(request, reply){
     personal.find({'idUsuario' : request.params.idUsuario}, function(err, Personal){
       if(!err && Personal){
@@ -34,6 +49,11 @@ exports.getPersonalUsuario = {
   }
 }
 exports.getPersonalOrdenes = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin', 'gerente']
+  },
   handler : function(request, reply){
     personal.find({'idOrdenes' : request.params.idOrdenes}, function(err, Personal){
       if(!err && Personal){
@@ -47,6 +67,11 @@ exports.getPersonalOrdenes = {
   }
 }
 exports.getPersonalIdentidad = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin', 'gerente']
+  },
   handler : function(request, reply){
     personal.find({'identidad' : request.params.identidad}, function(err, Personal){
       if(!err && Personal){
@@ -60,6 +85,11 @@ exports.getPersonalIdentidad = {
   }
 }
 exports.getPersonalTipo = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin', 'gerente']
+  },
   handler : function(request, reply){
     personal.find({'tipo' : request.params.tipo}, function(err, Personal){
       if(!err && Personal){
@@ -76,7 +106,7 @@ exports.modifyPersonal = {
   auth: {
     mode:'required',
     strategy:'session',
-    scope: ['admin']
+    scope: ['admin', 'gerente']
   },
   handler: function(request, reply){
     personal.update(
@@ -104,7 +134,7 @@ exports.deletePersonal = {
   auth: {
     mode:'required',
     strategy:'session',
-    scope: ['admin']
+    scope: ['admin', 'gerente']
   },
   handler: function(request, reply){
     personal.findOne({'_id' : request.params._id}, function(err, Personal){
@@ -123,7 +153,7 @@ exports.createPersonal = {
   auth: {
     mode:'required',
     strategy:'session',
-    scope: ['admin']
+    scope: ['admin', 'gerente']
   },
   handler: function(request, reply){
     var newPersonal = new personal({

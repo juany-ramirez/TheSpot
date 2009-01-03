@@ -2,12 +2,22 @@ var producto_elaborado_detail = require('../schemas/producto_elaborado_detail.js
 var mongoose = require('mongoose');
 
 exports.getProd_elaborado_details = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin', 'gerente']
+  },
   handler: function(request, reply){
     var producto_elaborado_details = producto_elaborado_detail.find({});
     reply(producto_elaborado_details);
   }
 }
 exports.getProd_elaborado_detailId = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin', 'gerente']
+  },
   handler : function(request, reply){
     producto_elaborado_detail.findOne({'_id' : request.params._id}, function(err, Producto_elaborado_detail){
       if(!err && Producto_elaborado_detail){
@@ -21,6 +31,11 @@ exports.getProd_elaborado_detailId = {
   }
 }
 exports.getProd_elaborado_detailIdElaborado = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin', 'gerente']
+  },
   handler : function(request, reply){
     producto_elaborado_detail.find({'idProducto_Elaborado' : request.params.idProducto_Elaborado}, function(err, Producto_elaborado_details){
       if(!err && Producto_elaborado_details){
@@ -34,6 +49,11 @@ exports.getProd_elaborado_detailIdElaborado = {
   }
 }
 exports.getProd_elaborado_detailIdBebida = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin', 'gerente']
+  },
   handler : function(request, reply){
     producto_elaborado_detail.find({'idBebida' : request.params.idBebida}, function(err, Producto_elaborado_details){
       if(!err && Producto_elaborado_details){
@@ -47,6 +67,11 @@ exports.getProd_elaborado_detailIdBebida = {
   }
 }
 exports.getProd_elaborado_detailIdInsumo = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin', 'gerente']
+  },
   handler : function(request, reply){
     producto_elaborado_detail.find({'idInsumo' : request.params.idInsumo}, function(err, Producto_elaborado_details){
       if(!err && Producto_elaborado_details){
@@ -63,7 +88,7 @@ exports.modifyProd_elaborado_detail = {
   auth: {
     mode:'required',
     strategy:'session',
-    scope: ['admin']
+    scope: ['admin', 'gerente']
   },
   handler: function(request, reply){
     producto_elaborado_detail.update(
@@ -89,7 +114,7 @@ exports.deleteProd_elaborado_detail = {
   auth: {
     mode:'required',
     strategy:'session',
-    scope: ['admin']
+    scope: ['admin', 'gerente']
   },
   handler: function(request, reply){
     producto_elaborado_detail.findOne({'_id' : request.params._id}, function(err, Producto_elaborado_detail){
@@ -108,7 +133,7 @@ exports.createProd_elaborado_detail = {
   auth: {
     mode:'required',
     strategy:'session',
-    scope: ['admin']
+    scope: ['admin'. 'gerente']
   },
   handler: function(request, reply){
     var newProducto_elaborado_detail = new producto_elaborado_detail({

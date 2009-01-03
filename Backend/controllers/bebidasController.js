@@ -2,12 +2,22 @@ var bebida = require('../schemas/bebida.js');
 var mongoose = require('mongoose');
 
 exports.getBebidas = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin', 'gerente', 'personal']
+  },
   handler: function(request, reply){
     var bebidas = bebida.find({});
     reply(bebidas);
   }
 }
 exports.getBebidaId = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin', 'gerente', 'personal']
+  },
   handler : function(request, reply){
     bebida.findOne({'_id' : request.params._id}, function(err, Bebida){
       if(!err && Bebida){
@@ -21,6 +31,11 @@ exports.getBebidaId = {
   }
 }
 exports.getBebidaName = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin', 'gerente', 'personal', 'cliente']
+  },
   handler : function(request, reply){
     bebida.find({'nombre' : request.params.nombre}, function(err, Bebidas){
       if(!err && Bebidas){
@@ -34,6 +49,11 @@ exports.getBebidaName = {
   }
 }
 exports.getBebidaProveedor = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin', 'gerente']
+  },
   handler : function(request, reply){
     bebida.find({'idProveedor' : request.params.idProveedor}, function(err, Bebidas){
       if(!err && Bebidas){
@@ -47,6 +67,11 @@ exports.getBebidaProveedor = {
   }
 }
 exports.getBebidaTipo = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin', 'gerente', 'personal', 'cliente']
+  },
   handler : function(request, reply){
     bebida.find({'tipo' : request.params.tipo}, function(err, Bebidas){
       if(!err && Bebidas){
@@ -63,7 +88,7 @@ exports.modifyBebida = {
   auth: {
     mode:'required',
     strategy:'session',
-    scope: ['admin']
+    scope: ['admin', 'gerente']
   },
   handler: function(request, reply){
     bebida.update(
@@ -90,7 +115,7 @@ exports.deleteBebida = {
   auth: {
     mode:'required',
     strategy:'session',
-    scope: ['admin']
+    scope: ['admin', 'gerente']
   },
   handler: function(request, reply){
     bebida.findOne({'_id' : request.params._id}, function(err, Bebida){
@@ -109,7 +134,7 @@ exports.createBebida = {
   auth: {
     mode:'required',
     strategy:'session',
-    scope: ['admin']
+    scope: ['admin', 'gerente']
   },
   handler: function(request, reply){
     var newBebida = new bebida({
