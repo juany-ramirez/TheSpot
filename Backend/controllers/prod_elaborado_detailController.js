@@ -60,6 +60,11 @@ exports.getProd_elaborado_detailIdInsumo = {
   }
 }
 exports.modifyProd_elaborado_detail = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin']
+  },
   handler: function(request, reply){
     producto_elaborado_detail.update(
       {'_id': request.params._id},
@@ -81,6 +86,11 @@ exports.modifyProd_elaborado_detail = {
   }
 }
 exports.deleteProd_elaborado_detail = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin']
+  },
   handler: function(request, reply){
     producto_elaborado_detail.findOne({'_id' : request.params._id}, function(err, Producto_elaborado_detail){
       if(err){
@@ -95,6 +105,11 @@ exports.deleteProd_elaborado_detail = {
   }
 }
 exports.createProd_elaborado_detail = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin']
+  },
   handler: function(request, reply){
     var newProducto_elaborado_detail = new producto_elaborado_detail({
       idProducto_Elaborado : request.payload.idProducto_Elaborado,

@@ -112,6 +112,11 @@ exports.getOrdenPersonal = {
   }
 }
 exports.modifyOrden = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin']
+  },
   handler: function(request, reply){
     orden.update(
       {'_id': request.params._id},
@@ -141,6 +146,11 @@ exports.modifyOrden = {
   }
 }
 exports.deleteOrden = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin']
+  },
   handler: function(request, reply){
     orden.findOne({'_id' : request.params._id}, function(err, Orden){
       if(err){
@@ -155,6 +165,11 @@ exports.deleteOrden = {
   }
 }
 exports.createOrden = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin']
+  },
   handler: function(request, reply){
     var newOrden = new orden({
       idCombos: request.payload.idCombos,

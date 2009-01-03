@@ -60,6 +60,11 @@ exports.getBebidaTipo = {
   }
 }
 exports.modifyBebida = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin']
+  },
   handler: function(request, reply){
     bebida.update(
       {'_id': request.params._id},
@@ -82,6 +87,11 @@ exports.modifyBebida = {
   }
 }
 exports.deleteBebida = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin']
+  },
   handler: function(request, reply){
     bebida.findOne({'_id' : request.params._id}, function(err, Bebida){
       if(err){
@@ -96,6 +106,11 @@ exports.deleteBebida = {
   }
 }
 exports.createBebida = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin']
+  },
   handler: function(request, reply){
     var newBebida = new bebida({
       nombre : request.payload.nombre,

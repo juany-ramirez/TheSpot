@@ -95,8 +95,14 @@
 export default {
   name: 'ordenes',
   mounted() {
-    $('ul.tabs').tabs();
-    $('.modal').modal();
+    (function($){
+  $(function(){
+
+    $('.button-collapse').sideNav();
+    $('.parallax').parallax();
+
+  }); // end of document ready
+})(jQuery); // end of jQuery name space
   }
 }
 </script>

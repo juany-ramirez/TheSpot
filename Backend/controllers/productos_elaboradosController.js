@@ -47,6 +47,11 @@ exports.getIdProducto_Elaborado_Tipo = {
   }
 }
 exports.modifyProductos_elaborado = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin']
+  },
   handler: function(request, reply){
     producto_elaborado.update(
       {'_id': request.params._id},
@@ -67,6 +72,11 @@ exports.modifyProductos_elaborado = {
   }
 }
 exports.deleteProducto_elaborado = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin']
+  },
   handler: function(request, reply){
     producto_elaborado.findOne({'_id' : request.params._id}, function(err, Producto_elaborado){
       if(err){
@@ -81,6 +91,11 @@ exports.deleteProducto_elaborado = {
   }
 }
 exports.createProducto_elaborado = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin']
+  },
   handler: function(request, reply){
     var newProducto_Elaborado = new producto_elaborado({
       idProducto_Elaborado_Detail : request.payload.idProducto_Elaborado_Detail,

@@ -60,6 +60,11 @@ exports.getMesaIdOrdenes = {
   }
 }
 exports.modifyMesa = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin']
+  },
   handler: function(request, reply){
     mesa.update(
       {'_id': request.params._id},
@@ -80,6 +85,11 @@ exports.modifyMesa = {
   }
 }
 exports.deleteMesa = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin']
+  },
   handler: function(request, reply){
     mesa.findOne({'_id' : request.params._id}, function(err, mesa){
       if(err){
@@ -94,6 +104,11 @@ exports.deleteMesa = {
   }
 }
 exports.createMesa = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin']
+  },
   handler: function(request, reply){
     var newMesa = new mesa({
       idOrden : request.payload.idProveedor,

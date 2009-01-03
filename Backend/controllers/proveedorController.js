@@ -73,6 +73,11 @@ exports.getProveedorContacto = {
   }
 }
 exports.modifyProveedor = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin']
+  },
   handler: function(request, reply){
     proveedor.update(
       {'_id': request.params._id},
@@ -98,6 +103,11 @@ exports.modifyProveedor = {
   }
 }
 exports.deleteProveedor = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin']
+  },
   handler: function(request, reply){
     proveedor.findOne({'_id' : request.params._id}, function(err, Proveedor){
       if(err){
@@ -112,6 +122,11 @@ exports.deleteProveedor = {
   }
 }
 exports.createProveedor = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin']
+  },
   handler: function(request, reply){
     var newProveedor = new proveedor({
       idInsumo : request.payload.idInsumo,

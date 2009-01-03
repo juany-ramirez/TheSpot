@@ -47,6 +47,11 @@ exports.getComboPrecio = {
   }
 }
 exports.modifyCombo = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin']
+  },
   handler: function(request, reply){
     combo.update(
       {'_id': request.params._id},
@@ -68,6 +73,11 @@ exports.modifyCombo = {
   }
 }
 exports.deleteCombo = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin']
+  },
   handler: function(request, reply){
     combo.findOne({'_id' : request.params._id}, function(err, Combo){
       if(err){
@@ -82,6 +92,11 @@ exports.deleteCombo = {
   }
 }
 exports.createCombo = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin']
+  },
   handler: function(request, reply){
     var newCombo = new combo({
       idProductos : request.payload.idProductos,

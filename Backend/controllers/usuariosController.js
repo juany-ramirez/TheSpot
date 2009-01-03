@@ -60,6 +60,11 @@ exports.getUsuarioName = {
   }
 }
 exports.modifyUsuario = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin']
+  },
   handler: function(request, reply){
     usuario.update(
       {'_id': request.params._id},
@@ -70,7 +75,8 @@ exports.modifyUsuario = {
           usuario : request.payload.usuario,
           contrasena : request.payload.contraseña,
           nombre : request.payload.nombre,
-          telefono : request.payload.telefono
+          telefono : request.payload.telefono,
+          scope: request.payload.scope
         }
       }, function(err){
         if(err){
@@ -83,6 +89,11 @@ exports.modifyUsuario = {
   }
 }
 exports.deleteUsuario = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin']
+  },
   handler: function(request, reply){
     usuario.findOne({'_id' : request.params._id}, function(err, Usuario){
       if(err){
@@ -97,6 +108,11 @@ exports.deleteUsuario = {
   }
 }
 exports.createUsuario = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin']
+  },
   handler: function(request, reply){
     var newUsuario = new usuario({
       IdPersonal : request.payload.IdPersonal,
@@ -104,7 +120,8 @@ exports.createUsuario = {
       usuario : request.payload.usuario,
       contrasena : request.payload.contraseña,
       nombre : request.payload.nombre,
-      telefono : request.payload.telefono
+      telefono : request.payload.telefono,
+      scope: request.payload.scope
     });
     newUsuario.save(function(err){
       if(!err){

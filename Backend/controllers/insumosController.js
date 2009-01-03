@@ -60,6 +60,11 @@ exports.getInsumoInventario = {
   }
 }
 exports.modifyInsumo = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin']
+  },
   handler: function(request, reply){
     insumo.update(
       {'_id': request.params._id},
@@ -80,6 +85,11 @@ exports.modifyInsumo = {
   }
 }
 exports.deleteInsumo = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin']
+  },
   handler: function(request, reply){
     insumo.findOne({'_id' : request.params._id}, function(err, Insumo){
       if(err){
@@ -94,6 +104,11 @@ exports.deleteInsumo = {
   }
 }
 exports.createInsumo = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin']
+  },
   handler: function(request, reply){
     var newInsumo = new insumo({
       nombre : request.payload.nombre,

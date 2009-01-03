@@ -73,6 +73,11 @@ exports.getProductoPrecio = {
   }
 }
 exports.modifyProducto = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin']
+  },
   handler: function(request, reply){
     producto.update(
       {'_id': request.params._id},
@@ -95,6 +100,11 @@ exports.modifyProducto = {
   }
 }
 exports.deleteProducto = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin']
+  },
   handler: function(request, reply){
     producto.findOne({'_id' : request.params._id}, function(err, Producto){
       if(err){
@@ -109,6 +119,11 @@ exports.deleteProducto = {
   }
 }
 exports.createProducto = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin']
+  },
   handler: function(request, reply){
     var newProducto = new producto({
       idBebida : request.payload.idBebida,

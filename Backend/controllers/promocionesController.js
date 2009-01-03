@@ -86,6 +86,11 @@ exports.getPromocionHora_Final = {
   }
 }
 exports.modifyPromocion = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin']
+  },
   handler: function(request, reply){
     promocion.update(
       {'_id': request.params._id},
@@ -110,6 +115,11 @@ exports.modifyPromocion = {
   }
 }
 exports.deletePromocion = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin']
+  },
   handler: function(request, reply){
     promocion.findOne({'_id' : request.params._id}, function(err, Promocion){
       if(err){
@@ -124,6 +134,11 @@ exports.deletePromocion = {
   }
 }
 exports.createPromocion = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin']
+  },
   handler: function(request, reply){
     var newPromocion = new promocion({
       idProductos : request.payload.idProductos,

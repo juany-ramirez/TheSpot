@@ -73,6 +73,11 @@ exports.getPersonalTipo = {
   }
 }
 exports.modifyPersonal = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin']
+  },
   handler: function(request, reply){
     personal.update(
       {'_id': request.params._id},
@@ -96,6 +101,11 @@ exports.modifyPersonal = {
   }
 }
 exports.deletePersonal = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin']
+  },
   handler: function(request, reply){
     personal.findOne({'_id' : request.params._id}, function(err, Personal){
       if(err){
@@ -110,6 +120,11 @@ exports.deletePersonal = {
   }
 }
 exports.createPersonal = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin']
+  },
   handler: function(request, reply){
     var newPersonal = new personal({
       idUsuario : request.payload.idUsuario,
