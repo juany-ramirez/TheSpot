@@ -1,16 +1,183 @@
 <template>
   <div id="app">
-    <hello></hello>
+    <nav id="elementos">
+      <div class="nav-wrapper">
+        <a class="brand-logo" ><img src="./imgs/the_spot.png" width="160" height="63" alt="Logo"></a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><router-link to="/"><a>HOME</a></router-link></li>
+          <li><router-link to="/menu"><a>MENU</a></router-link></li>
+          <li>
+            <nav>
+              <div class="nav-wrapper -white" id="busqueda">
+                <form>
+                  <div class="input-field">
+                    <input id="search" type="search" required>
+                    <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                    <i class="material-icons text-darken-4">close</i>
+                  </div>
+                </form>
+              </div>
+            </nav>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <router-view></router-view>
+    <div class="fixed-action-btn horizontal">
+      <a id="menu" class="waves-effect waves-light btn btn-floating btn-large -red" ><i class="material-icons">perm_identity</i></a>
+      <ul>
+        <li><a class="btn-floating -red"><i class="material-icons">insert_chart</i></a></li>
+        <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
+        <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
+        <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
+      </ul>
+    </div>
+
+    <div class="tap-target" data-activates="menu">
+      <div class="tap-target-content">
+        <p>Al crearte una cuenta recibirás promociones especiales y podras ordenar desde tu móvil</p>
+      </div>
+    </div>
+    <!-- <div class="fixed-action-btn horizontal">
+      <a class="btn-floating btn-large -red">
+        <i class="large material-icons">perm_identity</i>
+      </a>
+      <ul>
+        <li><a class="btn-floating -red"><i class="material-icons">insert_chart</i></a></li>
+        <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
+        <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
+        <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
+      </ul>
+    </div> -->
+    <footer class="page-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col s3">
+            <p class="grey-text text-lighten-4">
+              <i class="Small material-icons left">call</i> Teléfonos : 89628285 / 22039868
+            </p>
+          </div>
+          <div class="col s3 center" id="foots">
+            <a href="https://www.facebook.com/The-Spot-519126104924672/" target="_blank">
+              <img  src="https://www.iconfinder.com/data/icons/free-social-icons/67/facebook_circle_gray-64.png"></img>
+            </a>
+          </div>
+          <div class="col s3 center" id="foots">
+            <a href="https://www.instagram.com/the_spot_hn/" target="_blank">
+              <img src="https://www.iconfinder.com/data/icons/free-social-icons/67/instagram_circle_gray-64.png"></img>
+            </a>
+          </div>
+          <div class="col s3 center">
+            <p class="grey-text text-lighten-4">
+              <i class="Small material-icons left">av_timer</i>Horarios : 12:00 PM - 2:00 AM
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </footer>
   </div>
 </template>
 
 <script>
-import Hello from './components/Hello.vue'
-
-export default {
-  name: 'app',
-  components: {
-    Hello
+  import Home from './components/Home.vue'
+  export default {
+    name: 'app',
+    components: {
+      Home
+    },
+    methods:{
+      // $('.tap-target').tapTarget('open'),
+      // $('.tap-target').tapTarget('close')
+    }
   }
-}
 </script>
+
+<style scoped>
+  #foots{
+    -webkit-transition: background-color 2s ease-out;
+    -moz-transition: background-color 2s ease-out;
+    -o-transition: background-color 2s ease-out;
+    transition: background-color 2s ease-out;
+  }
+  #foots img:hover{
+    background: #black;
+    filter: alpha(opacity=60);
+    -moz-opacity: 0.6;
+    opacity: 0.6;
+    cursor: pointer;
+    -webkit-transition: background-color 2s ease-out;
+    -moz-transition: background-color 2s ease-out;
+    -o-transition: background-color 2s ease-out;
+    transition: background-color 2s ease-out;
+  }
+  #app{
+    background-color: #FF0B00;
+    color: #F4F0EA;
+  }
+  #elementos{
+    font-family: 'Roboto', sans-serif;
+  }
+  a {
+    color: #06152F;
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  #elementos{
+    color: #06152F;
+    background: #F4F0EA;
+    padding: 0px 50px;
+    -webkit-box-shadow: inset 0px 0px 45px 3px rgba(0,0,0,0.67);
+    -moz-box-shadow: inset 0px 0px 45px 3px rgba(0,0,0,0.67);
+    box-shadow: inset 0px 0px 45px 3px rgba(0,0,0,0.67);
+  }
+  #busqueda{
+    box-shadow: inset 0 -10px 20px -5px rgba(0,0,0,0.67);
+    box-shadow: inset 0 10px 20px -5px rgba(0,0,0,0.67);
+    color: #F4F0EA;
+  }
+  #search:focus {
+    -webkit-box-shadow: inset 0px 0px 45px 3px rgba(0,0,0,0.67);
+    -moz-box-shadow: inset 0px 0px 45px 3px rgba(0,0,0,0.67);
+    box-shadow: inset 0px 0px 45px 3px rgba(0,0,0,0.67);
+    background-color: #FF0B00;
+    color: #F4F0EA;
+  }
+  .page-footer{
+    color: #06152F;
+    background: black;
+  }
+
+  .footer-copyright{
+    color: #06152F;
+    background: #262626;
+    -webkit-box-shadow: inset 0px 0px 45px 3px rgba(0,0,0,0.67);
+    -moz-box-shadow: inset 0px 0px 45px 3px rgba(0,0,0,0.67);
+    box-shadow: inset 0px 0px 45px 3px rgba(0,0,0,0.67);
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+  }
+  .-white{
+    background-color: #F4F0EA;
+    color: black;
+  }
+  .-lightblue{
+    background-color: #5994AA;
+    color: #fff;
+  }
+  .-blue{
+    background-color: #06152F;
+    color: #fff;
+  }
+  .-red{
+    background-color: #FF0B00;
+    color: #fff;
+  }
+  .-black{
+    background-color: black;
+    color: #fff;
+  }
+</style>

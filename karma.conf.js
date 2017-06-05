@@ -13,6 +13,15 @@ module.exports = function (config) {
       // needed to enable mocks
       plugin: [require('proxyquireify').plugin]
     },
+    loaders: [
+        {
+            test: /\.(jpe?g|png|gif|svg)$/i,
+            loaders: [
+                'file-loader?hash=sha512&digest=hex&name=[hash].[ext]',
+                'image-webpack-loader?bypassOnDebug&optimizationLevel=7&interlaced=false'
+            ]
+        }
+    ]
     // if you want to continuously re-run tests on file-save,
     // replace the following line with `autoWatch: true`
     singleRun: true
