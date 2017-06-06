@@ -2,7 +2,7 @@
   <div id="app">
     <nav id="elementos">
       <div class="nav-wrapper">
-        <a class="brand-logo" ><img src="./imgs/the_spot.png" width="160" height="63" alt="Logo"></a>
+        <a class="brand-logo z-depth-5"  ><img src="../imgs/the_spot.png" class="materialboxed" width="210" height="65" alt="Logo"></a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           <li><router-link to="/"><a>HOME</a></router-link></li>
           <li><router-link to="/menu"><a>MENU</a></router-link></li>
@@ -24,7 +24,9 @@
     </nav>
     <router-view></router-view>
     <div class="fixed-action-btn horizontal">
-      <a id="menu" class="waves-effect waves-light btn btn-floating btn-large -red" ><i class="material-icons">perm_identity</i></a>
+      <router-link to="/login">
+        <a id="menu" class="waves-effect waves-light btn btn-floating btn-large pulse -red" ><i class="material-icons">perm_identity</i></a>
+      </router-link>
       <ul>
         <li><a class="btn-floating -red"><i class="material-icons">insert_chart</i></a></li>
         <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
@@ -32,50 +34,62 @@
         <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
       </ul>
     </div>
-
     <div class="tap-target" data-activates="menu">
       <div class="tap-target-content">
         <p>Al crearte una cuenta recibirás promociones especiales y podras ordenar desde tu móvil</p>
       </div>
     </div>
-    <!-- <div class="fixed-action-btn horizontal">
-      <a class="btn-floating btn-large -red">
-        <i class="large material-icons">perm_identity</i>
-      </a>
-      <ul>
-        <li><a class="btn-floating -red"><i class="material-icons">insert_chart</i></a></li>
-        <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
-        <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
-        <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
-      </ul>
-    </div> -->
     <footer class="page-footer">
       <div class="container">
         <div class="row">
-          <div class="col s3">
+          <div class="col s4">
             <p class="grey-text text-lighten-4">
               <i class="Small material-icons left">call</i> Teléfonos : 89628285 / 22039868
             </p>
           </div>
-          <div class="col s3 center" id="foots">
-            <a href="https://www.facebook.com/The-Spot-519126104924672/" target="_blank">
-              <img  src="https://www.iconfinder.com/data/icons/free-social-icons/67/facebook_circle_gray-64.png"></img>
-            </a>
-          </div>
-          <div class="col s3 center" id="foots">
-            <a href="https://www.instagram.com/the_spot_hn/" target="_blank">
-              <img src="https://www.iconfinder.com/data/icons/free-social-icons/67/instagram_circle_gray-64.png"></img>
-            </a>
-          </div>
-          <div class="col s3 center">
+          <div class="col s4 center" id="foots"></div>
+          <div class="col s4 center">
             <p class="grey-text text-lighten-4">
-              <i class="Small material-icons left">av_timer</i>Horarios : 12:00 PM - 2:00 AM
+              <i class="Small material-icons left">av_timer</i>Horarios : 11:00 AM - 2:00 AM
             </p>
           </div>
-
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col l6 s12">
+            <h5 class="white-text">Ubicación</h5>
+            <p class="grey-text text-lighten-4"><br>
+              Lomas del Guijarro, Plaza Las Lomas, segundo nivel.</p>
+          </div>
+          <div class="col l4 offset-l2 s12">
+            <h5 class="white-text">Conéctate con nosotros</h5>
+            <ul>
+              <li>
+                <div class="col s3 center" id="foots">
+                <a href="https://www.instagram.com/the_spot_hn/" target="_blank">
+                  <img src="https://www.iconfinder.com/data/icons/free-social-icons/67/instagram_circle_gray-64.png"></img>
+                </a>
+                </div>
+              </li>
+              <li>
+                <div class="col s3 center" id="foots">
+                  <a href="https://www.facebook.com/The-Spot-519126104924672/" target="_blank">
+                    <img  src="https://www.iconfinder.com/data/icons/free-social-icons/67/facebook_circle_gray-64.png"></img>
+                  </a>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-copyright">
+        <div class="container white-text">
+        © 2017 Copyright The Spot hn
         </div>
       </div>
     </footer>
+
   </div>
 </template>
 
@@ -94,6 +108,26 @@
 </script>
 
 <style scoped>
+  .-white{
+    background-color: #F4F0EA;
+    color: black;
+  }
+  .-lightblue{
+    background-color: #5994AA;
+    color: #F4F0EA;
+  }
+  .-blue{
+    background-color: #06152F;
+    color: #F4F0EA;
+  }
+  .-red{
+    background-color: #FF0B00;
+    color: #F4F0EA;
+  }
+  .-black{
+    background-color: #262626;
+    color: #F4F0EA;
+  }`
   #foots{
     -webkit-transition: background-color 2s ease-out;
     -moz-transition: background-color 2s ease-out;
@@ -112,7 +146,7 @@
     transition: background-color 2s ease-out;
   }
   #app{
-    background-color: #FF0B00;
+    background-color: #262626;
     color: #F4F0EA;
   }
   #elementos{
@@ -154,30 +188,12 @@
   .footer-copyright{
     color: #06152F;
     background: #262626;
+    font-size: 11px !important;
     -webkit-box-shadow: inset 0px 0px 45px 3px rgba(0,0,0,0.67);
     -moz-box-shadow: inset 0px 0px 45px 3px rgba(0,0,0,0.67);
     box-shadow: inset 0px 0px 45px 3px rgba(0,0,0,0.67);
     font-family: 'Roboto', sans-serif;
     font-size: 15px;
   }
-  .-white{
-    background-color: #F4F0EA;
-    color: black;
-  }
-  .-lightblue{
-    background-color: #5994AA;
-    color: #fff;
-  }
-  .-blue{
-    background-color: #06152F;
-    color: #fff;
-  }
-  .-red{
-    background-color: #FF0B00;
-    color: #fff;
-  }
-  .-black{
-    background-color: black;
-    color: #fff;
-  }
+
 </style>

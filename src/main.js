@@ -6,6 +6,7 @@ import VueRouter from 'vue-router'
 import App from './App.vue'
 import Home from './components/Home.vue'
 import Menu from './components/Menu.vue'
+import Login from './components/Login.vue'
 
 Vue.use(VueRouter);
 
@@ -20,6 +21,11 @@ const router = new VueRouter({
         name: 'Menu',
         path:'/menu',
         component:Menu
+      },
+      {
+        name: 'Login',
+        path:'/login',
+        component:Login
       }
     ],
     mode: 'history'
