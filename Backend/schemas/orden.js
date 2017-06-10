@@ -10,7 +10,7 @@ var OrdenSchema = new mongoose.Schema({
   idFacturas: [String],
   idMesa: String,
   total: Number,
-  fecha : String
+  fecha : String,
   efectivo: Number;
   tarjeta: Number;
 });
