@@ -1,5 +1,16 @@
 var bebidasController = require('./controllers/bebidasController');
-
+var combosController = require('./controllers/combosController');
+var facturasController = require('./controllers/facturasController');
+var insumosController = require('./controllers/insumosController');
+var mesasController = require('./controllers/mesasController');
+var ordenesController = require('./controllers/ordenesController');
+var personalController = require('./controllers/personalController');
+var prod_elaborado_detail = require('./controllers/prod_elaborado_detailController');
+var productos_elaboradosController = require('./controllers/productos_elaboradosController');
+var productosController = require('./controllers/productosController');
+var promocionesController = require('./controllers/promocionesController');
+var proovedorController = require('./controllers/proovedorController');
+var usuariosController = require('./controllers/usuariosController');
 exports.endpoints = [
 	{
 		method: 'GET',
