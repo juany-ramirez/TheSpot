@@ -1,0 +1,2 @@
+var promocion = require('../schemas/promocion.js');
+var mongoose = require('mongoose');

@@ -1,0 +1,2 @@
+var usuario = require('../schemas/usuario.js');
+var mongoose = require('mongoose');

@@ -7,7 +7,9 @@ var OrdenSchema = new mongoose.Schema({
   idCliente: String,
   nombreCliente: String,
   idPersonal: String,
+  idFacturas: [String],
   idMesa: String,
+  total: Number,
   fecha : String
   efectivo: Number;
   tarjeta: Number;
