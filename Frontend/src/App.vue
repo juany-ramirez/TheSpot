@@ -31,7 +31,7 @@
         <li><a class="btn-floating -red"><i class="material-icons">insert_chart</i></a></li>
         <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
         <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
-        <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
+        <li><router-link to="/ordenes"><a class="btn-floating blue"><i class="material-icons">add_alert</i></a></router-link></li>
       </ul>
     </div>
     <div class="tap-target" data-activates="menu">
@@ -50,7 +50,7 @@
           <div class="col s4 center" id="foots"></div>
           <div class="col s4 center">
             <p class="grey-text text-lighten-4">
-              <i class="Small material-icons left">av_timer</i>Horarios : 11:00 AM - 2:00 AM
+              <i class="Small material-icons left">query_builder</i>Horarios : 11:00 AM - 2:00 AM
             </p>
           </div>
         </div>
