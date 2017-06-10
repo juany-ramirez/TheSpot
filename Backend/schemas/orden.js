@@ -11,8 +11,8 @@ var OrdenSchema = new mongoose.Schema({
   idMesa: String,
   total: Number,
   fecha : String,
-  efectivo: Number;
-  tarjeta: Number;
+  efectivo: Number,
+  tarjeta: Number,
 });
 
 module.exports = mongoose.model('orden', OrdenSchema);
