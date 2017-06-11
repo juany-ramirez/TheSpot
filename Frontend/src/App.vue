@@ -31,7 +31,13 @@
         <li><a class="btn-floating -red"><i class="material-icons">insert_chart</i></a></li>
         <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
         <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
-        <li><router-link to="/ordenes"><a class="btn-floating blue"><i class="material-icons">add_alert</i></a></router-link></li>
+        <li>
+          <router-link to="/ordenes">
+            <a class="btn-floating blue">
+              <i class="material-icons">add_alert</i>
+            </a>
+          </router-link>
+        </li>
       </ul>
     </div>
     <div class="tap-target" data-activates="menu">
@@ -127,7 +133,7 @@
   .-black{
     background-color: #262626;
     color: #F4F0EA;
-  }`
+  }
   #foots{
     -webkit-transition: background-color 2s ease-out;
     -moz-transition: background-color 2s ease-out;
@@ -138,12 +144,11 @@
     background: #black;
     filter: alpha(opacity=60);
     -moz-opacity: 0.6;
-    opacity: 0.6;
-    cursor: pointer;
-    -webkit-transition: background-color 2s ease-out;
-    -moz-transition: background-color 2s ease-out;
-    -o-transition: background-color 2s ease-out;
-    transition: background-color 2s ease-out;
+    opacity: .5;
+    transition: opacity .3s ease-out;
+    -moz-transition: opacity .3s ease-out;
+    -webkit-transition: opacity .3s ease-out;
+    -o-transition: opacity .3s ease-out;
   }
   #app{
     background-color: #262626;
@@ -184,7 +189,13 @@
     color: #06152F;
     background: black;
   }
-
+  a :hover{
+    opacity: .6;
+    transition: opacity .2s ease-out;
+    -moz-transition: opacity .2s ease-out;
+    -webkit-transition: opacity .2s ease-out;
+    -o-transition: opacity .2s ease-out;
+  }
   .footer-copyright{
     color: #06152F;
     background: #262626;

@@ -46,7 +46,7 @@ exports.getOrdenesIdCombos = {
     });
   }
 }
-exports.getOrdenProductos = {
+exports.getOrdenesProductos = {
   handler : function(request, reply){
     orden.find({'idProductos' : request.params.idProductos}, function(err, Ordenes){
       if(!err && Ordenes){

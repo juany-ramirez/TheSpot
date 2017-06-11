@@ -1,15 +1,15 @@
 var bebidasController = require('./controllers/bebidasController');
 var combosController = require('./controllers/combosController');
 var facturasController = require('./controllers/facturasController');
-var insumosController = require('./controllers/insumosController');
+var insumosController = require('./controllers/insumoController');
 var mesasController = require('./controllers/mesasController');
 var ordenesController = require('./controllers/ordenesController');
 var personalController = require('./controllers/personalController');
-var prod_elaborado_detail = require('./controllers/prod_elaborado_detailController');
+var prod_elaborado_detailController = require('./controllers/prod_elaborado_detailController');
 var productos_elaboradosController = require('./controllers/productos_elaboradosController');
 var productosController = require('./controllers/productosController');
 var promocionesController = require('./controllers/promocionesController');
-var proovedorController = require('./controllers/proovedorController');
+var proovedorController = require('./controllers/proveedorController');
 var usuariosController = require('./controllers/usuariosController');
 exports.endpoints = [
 	{
@@ -225,7 +225,7 @@ exports.endpoints = [
 	{
 			method: 'GET',
 		 	path: '/ordenes',
-		 	config: ordenesController.getCombos
+		 	config: ordenesController.getOrdenes
  	},
 	{
 			method: 'GET',
@@ -323,12 +323,12 @@ exports.endpoints = [
 	{
 			method: 'DELETE',
 			path: '/personal/delete/{_id}',
-			config: personalsController.deletePersonal
+			config: personalController.deletePersonal
  	},
 	{
 			method: 'POST',
 			path: '/personal/create',
-			config: personalsController.createPersonal
+			config: personalController.createPersonal
  	},
 	{
 			method: 'GET',

@@ -7,7 +7,7 @@ exports.getFacturas = {
     reply(facturas);
   }
 }
-exports.getfacturaId = {
+exports.getFacturaId = {
   handler : function(request, reply){
     factura.findOne({'_id' : request.params.id}, function(err, Factura){
       if(!err && Factura){
