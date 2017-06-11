@@ -11,7 +11,7 @@
         </div>
       </li>
       <li>
-        <img src="https://static.pexels.com/photos/144429/pexels-photo-144429.jpeg">
+        <img src="https://static.pexels.com/photos/164879/pexels-photo-164879.jpeg">
         <!-- random image -->
         <div class="caption center-align">
           <h3>KARAOKE NIGHT</h3>
@@ -26,7 +26,7 @@
         </div>
       </li>
       <li>
-        <img src="https://static.pexels.com/photos/30732/pexels-photo-30732.jpg">
+        <img src="../imgs/mojito.jpeg">
         <!-- random image -->
         <div class="caption right-align">
           <h3>The Spot</h3>
