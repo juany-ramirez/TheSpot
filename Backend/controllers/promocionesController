@@ -46,7 +46,7 @@ exports.getPromocionDescuento = {
     });
   }
 }
-exports.getPromocionNombre = {
+exports.getPromocionName = {
   handler : function(request, reply){
     promocion.find({'nombre' : request.params.nombre}, function(err, Promocion){
       if(!err && Promocion){

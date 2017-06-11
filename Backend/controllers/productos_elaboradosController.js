@@ -46,7 +46,7 @@ exports.getIdProducto_Elaborado_Tipo = {
     });
   }
 }
-exports.modifyBebida = {
+exports.modifyProductos_elaborado = {
   handler: function(request, reply){
     producto_elaborado.update(
       {'_id': request.params.id},

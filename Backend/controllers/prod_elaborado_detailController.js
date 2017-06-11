@@ -80,7 +80,7 @@ exports.modifyProd_elaborado_detail = {
     );
   }
 }
-exports.deleterod_elaborado_detail = {
+exports.deleteProd_elaborado_detail = {
   handler: function(request, reply){
     prod_elaborado_detail.findOne({'_id' : request.params.id}, function(err, Prod_elaborado_detail){
       if(err){

@@ -72,9 +72,9 @@ exports.getProductoPrecio = {
     });
   }
 }
-exports.modifyBebida = {
+exports.modifyProducto = {
   handler: function(request, reply){
-    bebida.update(
+    producto.update(
       {'_id': request.params.id},
       {$set:
         {

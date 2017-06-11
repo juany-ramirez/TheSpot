@@ -59,6 +59,19 @@ exports.getOrdenesProductos = {
     });
   }
 }
+exports.getOrdenesPromociones = {
+  handler : function(request, reply){
+    orden.find({'idPromociones' : request.params.idPromociones}, function(err, Ordenes){
+      if(!err && Ordenes){
+        return reply(Ordenes);
+      }else if(!err){
+        return reply(boom.notFound());
+      }else if(err){
+        return reply(boom.wrap(err, 'Ordenes not found'));
+      }
+    });
+  }
+}
 exports.getOrdenesMesa = {
   handler : function(request, reply){
     orden.find({'idMesa' : request.params.idMesa}, function(err, Ordenes){
