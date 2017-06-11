@@ -12,7 +12,7 @@ var OrdenSchema = new mongoose.Schema({
   total: Number,
   fecha : String,
   efectivo: Number,
-  tarjeta: Number,
+  tarjeta: Number
 });
 
 module.exports = mongoose.model('orden', OrdenSchema);

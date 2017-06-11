@@ -46,7 +46,7 @@ exports.endpoints = [
 	{
 			method: 'GET',
 			path: '/bebidas/searchbyTipo/{tipo}',
-			config: bebidasController.getBebidaKey
+			config: bebidasController.getBebidaTipo
  	},
  	{
  			method: 'PUT',
@@ -157,7 +157,7 @@ exports.endpoints = [
 	{
 			method: 'GET',
 			path: '/insumos/searchbyProovedor/idProveedor',
-			config: insumosController.getInsumoKey
+			config: insumosController.getInsumoProveedor
  	},
 	{
 			method: 'GET',
@@ -240,7 +240,7 @@ exports.endpoints = [
 	{
 			method: 'GET',
 			path: '/ordenes/searchbyidCombos/{idCombos}',
-			config: ordenesController.getOrdenesId
+			config: ordenesController.getOrdenesIdCombos
  	},
 	{
 			method: 'GET',
@@ -255,7 +255,7 @@ exports.endpoints = [
 	{
 			method: 'GET',
 			path: '/ordenes/searchbyidMesa/{idMesa}',
-			config: ordenesController.OrdenesMesa
+			config: ordenesController.getOrdenesMesa
  	},
 	{
 			method: 'GET',
@@ -264,7 +264,7 @@ exports.endpoints = [
  	},
 	{
 			method: 'GET',
-			path: '/ordenes/searchPersonal',
+			path: '/ordenes/searchPersonal/{idPersonal}',
 			config: ordenesController.getOrdenPersonal
  	},
  	{
@@ -312,7 +312,7 @@ exports.endpoints = [
 	{
 			method: 'GET',
 			path: '/personal/searchbytipo/{tipo}',
-			config: personalController.getPersonalOrigen
+			config: personalController.getPersonalTipo
  	},
  	{
  			method: 'PUT',
@@ -343,17 +343,17 @@ exports.endpoints = [
 	{
 			method: 'GET',
 			path: '/prod_elaborado_detail/searchbyidElaborado/{idProducto_Elaborado}',
-			config: prod_elaborado_detailController.getProd_elaboradoId
+			config: prod_elaborado_detailController.getProd_elaborado_detailIdElaborado
  	},
 	{
 			method: 'GET',
 			path: '/prod_elaborado_detail/searchbyidBebida/{idBebida}',
-			config: prod_elaborado_detailController.getidBebida
+			config: prod_elaborado_detailController.getProd_elaborado_detailIdBebida
  	},
 	{
 			method: 'GET',
 			path: '/prod_elaborado_detail/searchbyidInsumo/{idInsumo}',
-			config: prod_elaborado_detailController.getidInsumo
+			config: prod_elaborado_detailController.getProd_elaborado_detailIdInsumo
  	},
  	{
  			method: 'PUT',
@@ -383,13 +383,13 @@ exports.endpoints = [
  	},
 	{
 			method: 'GET',
-			path: '/productos_elaborados/searchbytype/{tipo}',
-			config: productos_elaboradosController.getTipos
+			path: '/productos_elaborados/searchbyProducto_Elaborado_Detail/{tipo}',
+			config: productos_elaboradosController.getIdProducto_Elaborado_Tipo
  	},
 	{
 			method: 'GET',
 			path: '/productos_elaborados/searchbyPod_Details/{idProducto_Elaborado_Detail}',
-			config: productos_elaboradosController.getProd_details
+			config: productos_elaboradosController.getIdProducto_Elaborado_Detail
  	},
  	{
  			method: 'PUT',
@@ -400,12 +400,12 @@ exports.endpoints = [
 	{
 			method: 'DELETE',
 			path: '/productos_elaborados/delete/{_id}',
-			config: productos_elaboradosController.deleteProductos_elaborado
+			config: productos_elaboradosController.deleteProducto_elaborado
  	},
 	{
 			method: 'POST',
 			path: '/productos_elaborados/create',
-			config: productos_elaboradosController.createProductos_elaborado
+			config: productos_elaboradosController.createProducto_elaborado
  	},
 	{
 			method: 'GET',
@@ -421,12 +421,17 @@ exports.endpoints = [
 	{
 			method: 'GET',
 			path: '/productos/searchbyBebida/{idBebida}',
-			config: productosController.getProductoBebida
+			config: productosController.getProductoIdBebida
  	},
 	{
 			method: 'GET',
 			path: '/productos/searchbyProd_Elaborado/{idProducto_Elaborado}',
-			config: productosController.getProductoBebida
+			config: productosController.getProductoidProducto_Elaborado
+ 	},
+	{
+			method: 'GET',
+			path: '/productos/searchbynombre/{nombre}',
+			config: productosController.getProductoNombre
  	},
 	{
 			method: 'GET',
@@ -558,7 +563,7 @@ exports.endpoints = [
  	},
 	{
 			method: 'GET',
-			path: '/usuarios/searchbyidPersonal/{idPersonal}',
+			path: '/usuarios/searchbyidPersonal/{IdPersonal}',
 			config: usuariosController.getUsuarioIdPersonal
  	},
 	{

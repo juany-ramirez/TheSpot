@@ -1,2 +1,102 @@
 var producto_elaborado = require('../schemas/producto_elaborado.js');
 var mongoose = require('mongoose');
+
+exports.getProductos_elaborados = {
+  handler: function(request, reply){
+    var productos_elaborados = producto_elaborado.find({});
+    reply(productos_elaborados);
+  }
+}
+exports.getProductos_elaboradoId = {
+  handler : function(request, reply){
+    producto_elaborado.findOne({'_id' : request.params.id}, function(err, Producto_elaborado){
+      if(!err && Producto_elaborado){
+        return reply(Producto_elaborado);
+      }else if(!err){
+        return reply(boom.notFound());
+      }else if(err){
+        return reply(boom.wrap(err, 'Producto_elaborado not found'));
+      }
+    });
+  }
+}
+exports.getIdProducto_Elaborado_Detail = {
+  handler : function(request, reply){
+    producto_elaborado.find({'idProducto_Elaborado_Detail' : request.params.idProducto_Elaborado_Detail}, function(err, Productos_elaborados){
+      if(!err && Productos_elaborados){
+        return reply(Productos_elaborados);
+      }else if(!err){
+        return reply(boom.notFound());
+      }else if(err){
+        return reply(boom.wrap(err, 'Producto_elaborado not found'));
+      }
+    });
+  }
+}
+exports.getIdProducto_Elaborado_Tipo = {
+  handler : function(request, reply){
+    producto_elaborado.find({'tipo' : request.params.idProveedor}, function(err, Productos_elaborados){
+      if(!err && Productos_elaborados){
+        return reply(Productos_elaborados);
+      }else if(!err){
+        return reply(boom.notFound());
+      }else if(err){
+        return reply(boom.wrap(err, 'Productos_elaborados not found'));
+      }
+    });
+  }
+}
+exports.modifyBebida = {
+  handler: function(request, reply){
+    producto_elaborado.update(
+      {'_id': request.params.id},
+      {$set:
+        {
+          idProducto_Elaborado_Detail : request.payload.nombre,
+          tipo : request.payload.tipo,
+          descripcion : request.payload.descripcion
+        }
+      }, function(err){
+        if(err){
+          return reply(boom.wrap(err, 'Producto_elaborado not found'));
+        }else{
+          return reply('updated succesfully');
+        }
+      }
+    );
+  }
+}
+exports.deleteProducto_elaborado = {
+  handler: function(request, reply){
+    producto_elaborado.findOne({'_id' : request.params.id}, function(err, Producto_elaborado){
+      if(err){
+        return reply(boom.badRequest("Could not delete bebida"));
+      }else if(!err && Producto_elaborado){
+        Bebida.remove();
+        return reply('Producto_elaborado deleted succesfully');
+      }else if(!err){
+        return reply(boom.notFound());
+      }
+    });
+  }
+}
+exports.createProducto_elaborado = {
+  handler: function(request, reply){
+    var newProducto_Elaborado = new producto_elaborado({
+      idProducto_Elaborado_Detail : request.payload.nombre,
+      tipo : request.payload.tipo,
+      descripcion : request.payload.descripcion
+    });
+    newProducto_Elaborado.save(function(err){
+      if(!err){
+        return reply({
+          success: true
+        });
+      }else{
+        return reply({
+          success: false
+        })
+      }
+    });
+  }
+}
