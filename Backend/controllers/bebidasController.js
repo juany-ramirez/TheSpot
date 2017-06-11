@@ -99,7 +99,7 @@ exports.createBebida = {
   handler: function(request, reply){
     var newBebida = new bebida({
       nombre : request.payload.nombre,
-      idProovedor : request.payload.idProovedor,
+      idProveedor : request.payload.idProovedor,
       tipo : request.payload.tipo,
       inventario : request.payload.inventario,
       descripcion : request.payload.descripcion
