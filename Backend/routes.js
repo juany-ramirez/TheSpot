@@ -249,7 +249,7 @@ exports.endpoints = [
  	},
 	{
 			method: 'GET',
-			path: '/ordenes/searchbyidPromociones/{idPromociones}',
+			path: '/ordenes/searchbyidPromociones/{_id}',
 			config: ordenesController.getOrdenesPromociones
  	},
 	{
