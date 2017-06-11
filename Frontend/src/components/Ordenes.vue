@@ -75,15 +75,17 @@
     </div>
     <div id="test-swipe-2">
       <br>
-      <div id="cuadroMesa" class="col s4 z-depth-5 -lightblue" >
-        <br><br>
-        <span id="tituloMesa"> <i class="material-icons">shopping_cart</i> ORDEN 1</span>
-        <p>
-          <a class="btn-floating waves-effect waves-light btn grey grey darken-3"><i class="material-icons">receipt</i></a>
-        </p>
-        <br><br>
+      <div class="row">
+        <div id="cuadroMesa" class="col s4 z-depth-5 -lightblue" >
+          <br><br>
+          <span id="tituloMesa"> <i class="material-icons">shopping_cart</i> ORDEN 1</span>
+          <p>
+            <a class="btn-floating waves-effect waves-light btn grey grey darken-3"><i class="material-icons">receipt</i></a>
+          </p>
+          <br><br>
+        </div>
       </div>
-    </div>
+    </div><br><br><br><br>
     <br>
 
   </div>
@@ -124,6 +126,8 @@ export default {
   .collection-header{
     font-family: 'Oswald', sans-serif;
     font-size: 22px;
+    background-color: #06152F;
+    color: #F4F0EA;
   }
   #test-swipe-1 .row{
     padding: 12px;

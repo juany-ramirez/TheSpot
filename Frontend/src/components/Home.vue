@@ -52,25 +52,40 @@
     <div class="col s6 -blue" id="contenedor-secundario">Crear una Cuenta <br>
       <span id="descripcionCont">Conéctate con nosotros y disfruta de muchos beneficios preferenciales</span><br>
       <a class="waves-effect waves-light btn-large -lightblue z-depth-4">
-           <i class="large material-icons left">track_changes</i>INFO
+           <i  v-on:click="infoFeature()" class="tap-target large material-icons left" data-activates="menu">track_changes</i>INFO
+           <!-- Tap Target Structure -->
+             <div class="tap-target-content">
+               <h5>Title</h5>
+               <p>A bunch of text</p>
+             </div>
      </a>
     </div>
     <!-- |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||-->
 
-    <div class="card-panel -lightblue" id="homeCard"> </div>
-
-    <div class="imageContainer">
-        <img class="col s4" src="..\imgs\grill.jpg">
+    <div class="col s4 imageContainer1" id="imageContainer" >
+      <div class="mision">
+        <img src="../imgs/cocina.png" class="invert">
+        <h3> Calidad de su Menú </h3>
+        Un menú con opciones
+        clave para satisfacer el paladar de nuestros clientes.
+      </div>
     </div>
-    <div class="imageContainer">
-        <img class="col s4" src="..\imgs\table_setting.jpg">
+    <div class="col s4 imageContainer2" id="imageContainer" >
+      <div class="mision">
+        <img src="../imgs/speaker.png" class="invert">
+        <h3> Un ambiente agradable </h3>
+        El punto de entretenimiento favorito de nuestros clientes.
+      </div>
     </div>
-    <div class="imageContainer">
-        <img class="col s4" src="..\imgs\burger.jpeg">
+    <div class="col s4 imageContainer3" id="imageContainer" >
+      <div class="flow-text mision">
+        <img src="../imgs/employee.png" class="invert">
+        <h3> Calidad de servicio</h3>
+          Con el fin de lograr la preferencia de nuestros usuarios.
+      </div>
     </div>
     <!-- |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||-->
-
-    <div class="card-panel -black" id="homeCard"> </div>
+    <div class="card-panel -blue" id="homeCard"> </div>
     <div class="bg">
       <div class="transbox">
         <p>This is where the party begins</p>
@@ -86,10 +101,31 @@
 <script>
 export default {
   name: 'home',
-  methods: {},
+  data(){
+    return{
+      infobtn: 0
+    }
+  },
+  methods: {
+    infoFeature(){
+      console.log('entre ');
+      if(this.infobtn==0){
+        this.infobtn=1;
+
+        $('.tap-target').tapTarget('open');
+      }else{
+        this.infobtn=0;
+        $('.tap-target').tapTarget('close');
+      }
+    }
+  },
+  beforeMount(){
+			console.log('Hola');
+	},
   mounted() {
     $('.slider').slider();
   }
+
 
 }
 </script>
@@ -102,6 +138,7 @@ export default {
   div.bg {
     background: url('../../imgs/bottles.jpeg') ;
     border: 2px solid black;
+    background-size: cover;
   }
 
   div.transbox {
@@ -113,6 +150,7 @@ export default {
       opacity: 0.6;
       filter: alpha(opacity=60); /* For IE8 and earlier */
   }
+  .invert {-webkit-filter: invert(100%); filter: invert(100%);}
 
   div.transbox p {
       margin: 5%;
@@ -121,14 +159,42 @@ export default {
       font-size: 50px;
       color: #000000;
   }
-  .imageContainer{
-    background-color: #262626;
-    -khtml-opacity:.50;
-    -moz-opacity:.50;
-    -ms-filter:”alpha(opacity=50)”;
-    filter:alpha(opacity=50);
-    filter: progid:DXImageTransform.Microsoft.Alpha(opacity=0.5);
-    opacity:.50;
+  div .imageContainer1{
+    background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('../../imgs/grill.jpg');
+    background-size: cover;
+  }
+  div .imageContainer2{
+    background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('../../imgs/table_setting.jpg');
+    background-size: cover;
+  }
+  div .imageContainer3{
+    background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('../../imgs/burger.jpeg');
+    background-size: cover;
+  }
+  h3 .mision{
+    font-family: 'Source Sans Pro', sans-serif !important;
+    font-size: 20px !important;
+    position: relative;
+
+  }
+  .mision {
+    text-align: center;
+    position:absolute;
+    height:80%; /* = 100% - 2*10% padding */
+    width:90%; /* = 100% - 2*5% padding */
+    padding: 10% 5%;
+    font-weight: bold;
+    font-family: 'Cormorant SC', serif;
+    font-size: 25px;
+    color: white;
+  }
+  div #imageContainer{
+    float:left;
+    position: relative;
+    width: 30%;
+    padding-bottom: 30%; /* = width for a 1:1 aspect ratio */
+    margin:1.66%;
+
   }
 
   .fontBox{
