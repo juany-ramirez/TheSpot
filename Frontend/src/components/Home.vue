@@ -37,32 +37,25 @@
   </div>
   <!-- |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||-->
   <div class="row">
-    <div class="col s3 -red" id="contenedor-principal1">THE SPOT</div>
-    <div class="col s9 -red" id="contenedor-principal2">
+    <div class="col s4 -red" id="contenedor-principal1">THE SPOT</div>
+    <div class="col s8 -red" id="contenedor-principal2">
       Tu nuevo Spot!
       <br>Restaurante bar con servicio a Domicilio! Value lunch, Cocteleria y shots innovadores! Tienes que conocerlo!
     </div>
     <!-- |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||-->
     <div class="col s6 -white center flow-text" id="contenedor-secundario">
-      <i class="medium material-icons">location_on</i>
-       UBÍCANOS:<br>
-       <span class="fontBox">Lomas del Guijarro <br>
-       Plaza Las Lomas, segundo nivel Antiguo local de Sake Tegucigalpa</span>
+        <img src="../imgs/location.gif" height="68" width="68" >
+        UBICACIÓN:<br>
+        <span class="fontBox">Lomas del Guijarro <br>
+        Plaza Las Lomas, segundo nivel Antiguo local de Sake Tegucigalpa</span>
     </div>
     <div class="col s6 -blue" id="contenedor-secundario">Crear una Cuenta <br>
       <span id="descripcionCont">Conéctate con nosotros y disfruta de muchos beneficios preferenciales</span><br>
-      <a class="waves-effect waves-light btn-large -lightblue z-depth-4">
-           <i  v-on:click="infoFeature()" class="tap-target large material-icons left" data-activates="menu">track_changes</i>INFO
-           <!-- Tap Target Structure -->
-             <div class="tap-target-content">
-               <h5>Title</h5>
-               <p>A bunch of text</p>
-             </div>
-     </a>
+
     </div>
     <!-- |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||-->
 
-    <div class="col s4 imageContainer1" id="imageContainer" >
+    <div class="col s12 l4 imageContainer1" id="imageContainer" >
       <div class="mision">
         <img src="../imgs/cocina.png" class="invert">
         <h3> Calidad de su Menú </h3>
@@ -70,14 +63,14 @@
         clave para satisfacer el paladar de nuestros clientes.
       </div>
     </div>
-    <div class="col s4 imageContainer2" id="imageContainer" >
+    <div class="col s12 m4 l4 imageContainer2" id="imageContainer" >
       <div class="mision">
         <img src="../imgs/speaker.png" class="invert">
         <h3> Un ambiente agradable </h3>
         El punto de entretenimiento favorito de nuestros clientes.
       </div>
     </div>
-    <div class="col s4 imageContainer3" id="imageContainer" >
+    <div class="col s12 m4 l4 imageContainer3" id="imageContainer" >
       <div class="flow-text mision">
         <img src="../imgs/employee.png" class="invert">
         <h3> Calidad de servicio</h3>
@@ -155,7 +148,8 @@ export default {
   div.transbox p {
       margin: 5%;
       font-weight: bold;
-      font-family: 'Cormorant SC', serif;
+      font-family: 'Playfair Display', serif;
+
       font-size: 50px;
       color: #000000;
   }
