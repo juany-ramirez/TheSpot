@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="-white">
     <div class="card-panel -white" id="homeCard">
     </div>
     <div class="card-panel -white" id="homeCard">

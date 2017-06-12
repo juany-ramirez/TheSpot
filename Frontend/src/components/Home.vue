@@ -43,8 +43,8 @@
       <br>Restaurante bar con servicio a Domicilio! Value lunch, Cocteleria y shots innovadores! Tienes que conocerlo!
     </div>
     <!-- |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||-->
-    <div class="col s6 -white center" id="contenedor-secundario">
-      <i class="medium material-icons">location_on</i><br>
+    <div class="col s6 -white center flow-text" id="contenedor-secundario">
+      <i class="medium material-icons">location_on</i>
        UBÍCANOS:<br>
        <span class="fontBox">Lomas del Guijarro <br>
        Plaza Las Lomas, segundo nivel Antiguo local de Sake Tegucigalpa</span>
@@ -70,7 +70,7 @@
     </div>
     <!-- |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||-->
 
-    <div class="card-panel -red" id="homeCard"> </div>
+    <div class="card-panel -black" id="homeCard"> </div>
     <div class="bg">
       <div class="transbox">
         <p>This is where the party begins</p>
@@ -130,9 +130,12 @@ export default {
     filter: progid:DXImageTransform.Microsoft.Alpha(opacity=0.5);
     opacity:.50;
   }
+
   .fontBox{
+    /*font-family: 'Cormorant SC', serif;*/
     font-family: 'Source Sans Pro', sans-serif !important;
-    font-size: 40px !important;
+    font-size: 20px !important;
+    font-weight: bold;
   }
   #homeCard {
     height: 100px;
@@ -166,12 +169,12 @@ export default {
 
   #contenedor-principal1,
   #contenedor-principal2 {
-    height: 100px;
+    height: 150px;
   }
 
   #contenedor-principal1 {
     font-family: 'Oswald', sans-serif;
-    font-size: 50px;
+    font-size: 3.125em;
     text-align: right;
     display: -webkit-box;
     -webkit-box-pack: end;
@@ -180,7 +183,7 @@ export default {
 
   #contenedor-principal2 {
     font-family: 'Roboto', sans-serif;
-    font-size: 17px;
+    font-size: 1.063em;
     align-items: flex-start;
     text-align: left;
     display: -webkit-box;
@@ -188,24 +191,25 @@ export default {
     padding-top: 15px;
   }
 
+
   .-white{
     background-color: #F4F0EA;
     color: black;
   }
   .-lightblue{
     background-color: #5994AA;
-    color: #fff;
+    color: #F4F0EA;
   }
   .-blue{
     background-color: #06152F;
-    color: #fff;
+    color: #F4F0EA;
   }
   .-red{
     background-color: #FF0B00;
-    color: #fff;
+    color: #F4F0EA;
   }
   .-black{
     background-color: #262626;
-    color: #fff;
+    color: #F4F0EA;
   }
 </style>
