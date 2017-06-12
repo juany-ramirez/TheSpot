@@ -5,6 +5,7 @@
       <center>
         <div class="section"></div>
         <div class="container">
+
           <div class="z-depth-1 grey lighten-4 row" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
             <form class="col s12" method="post">
               <div class='row'>
@@ -14,16 +15,16 @@
               <div class='row'>
                 <div class='input-field col s12'>
                   <input class='validate' type='email' name='email' id='email' />
-                  <label for='email'>Enter your email</label>
+                  <label for='email'>Usuario</label>
                 </div>
               </div>
               <div class='row'>
                 <div class='input-field col s12'>
                   <input class='validate' type='password' name='password' id='password' />
-                  <label for='password'>Enter your password</label>
+                  <label for='password'>Contraseña</label>
                 </div>
                 <label style='float: right;'>
-  								<a class='pink-text' href='#!'><b>Forgot Password?</b></a>
+                  <a class='registro'><router-link to="/registrar"><b>Crear cuenta nueva</b></router-link></a>
   							</label>
               </div>
               <br>
@@ -50,6 +51,14 @@ export default {
 </script>
 
 <style scoped>
+.registro{
+  font-size: 15px;
+  font-family: 'Source Sans Pro', sans-serif;
+
+}
+.registro:hover{
+  color: #06152F !important;
+}
 .-white{
   background-color: #F4F0EA;
   color: black;
