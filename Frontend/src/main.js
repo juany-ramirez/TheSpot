@@ -8,6 +8,7 @@ import Home from './components/Home.vue'
 import Menu from './components/Menu.vue'
 import Login from './components/Login.vue'
 import Ordenes from './components/Ordenes.vue'
+import Register from './components/Register.vue'
 
 Vue.use(VueRouter);
 
@@ -27,6 +28,11 @@ const router = new VueRouter({
         name: 'Ordenes',
         path:"/ordenes",
         component:Ordenes
+      },
+      {
+        name: 'Register',
+        path:"/registrar",
+        component:Register
       },
       {
         name: 'Login',
