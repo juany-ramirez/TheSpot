@@ -37,26 +37,26 @@
   </div>
   <!-- |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||-->
   <div class="row">
-    <div class="col s4 -red" id="contenedor-principal1">THE SPOT</div>
-    <div class="col s8 -red" id="contenedor-principal2">
+    <div class="col s4 flow-text -red" id="contenedor-principal1">THE SPOT</div>
+    <div class="col s8 flow-text -red" id="contenedor-principal2">
       Tu nuevo Spot!
       <br>Restaurante bar con servicio a Domicilio! Value lunch, Cocteleria y shots innovadores! Tienes que conocerlo!
     </div>
     <!-- |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||-->
-    <div class="col s6 -white center flow-text" id="contenedor-secundario">
+    <div class="col s6 flow-text -white center flow-text" id="contenedor-secundario">
         <img src="../imgs/location.gif" height="68" width="68" >
         UBICACIÓN:<br>
         <span class="fontBox">Lomas del Guijarro <br>
         Plaza Las Lomas, segundo nivel Antiguo local de Sake Tegucigalpa</span>
     </div>
-    <div class="col s6 -blue" id="contenedor-secundario">Crear una Cuenta <br>
+    <div class="col s6 flow-text -blue" id="contenedor-secundario">Crear una Cuenta <br>
       <span id="descripcionCont">Conéctate con nosotros y disfruta de muchos beneficios preferenciales</span><br>
 
     </div>
     <!-- |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||-->
 
     <div class="col s12 l4 imageContainer1" id="imageContainer" >
-      <div class="mision">
+      <div class="flow-text mision">
         <img src="../imgs/cocina.png" class="invert">
         <h3> Calidad de su Menú </h3>
         Un menú con opciones
@@ -64,7 +64,7 @@
       </div>
     </div>
     <div class="col s12 m4 l4 imageContainer2" id="imageContainer" >
-      <div class="mision">
+      <div class="flow-text mision">
         <img src="../imgs/speaker.png" class="invert">
         <h3> Un ambiente agradable </h3>
         El punto de entretenimiento favorito de nuestros clientes.
@@ -143,8 +143,26 @@ export default {
       opacity: 0.6;
       filter: alpha(opacity=60); /* For IE8 and earlier */
   }
-  .invert {-webkit-filter: invert(100%); filter: invert(100%);}
+  .invert {
+    -webkit-filter: invert(100%); filter: invert(100%);
+  }
 
+  @media only screen and (max-width: 767px) {
+
+  .mision{
+      font-size: 1.563em;
+   }
+
+  h3 .mision{
+      font-size: 1.250em;
+
+   }
+
+}
+  .mision img{
+    max-width: 100%;
+    max-height: 100%;
+   }
   div.transbox p {
       margin: 5%;
       font-weight: bold;
@@ -167,7 +185,6 @@ export default {
   }
   h3 .mision{
     font-family: 'Source Sans Pro', sans-serif !important;
-    font-size: 20px !important;
     position: relative;
 
   }
@@ -179,7 +196,7 @@ export default {
     padding: 10% 5%;
     font-weight: bold;
     font-family: 'Cormorant SC', serif;
-    font-size: 25px;
+
     color: white;
   }
   div #imageContainer{
@@ -243,7 +260,7 @@ export default {
 
   #contenedor-principal2 {
     font-family: 'Roboto', sans-serif;
-    font-size: 1.063em;
+    font-size: 1.4em;
     align-items: flex-start;
     text-align: left;
     display: -webkit-box;
