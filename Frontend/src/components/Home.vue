@@ -136,7 +136,7 @@ export default {
 
   div.transbox {
       margin: 30px;
-      border-radius: 10px;
+      border-radius: 5px;
       text-align: center;
       background-color: #ffffff;
       border: 1px solid black;
