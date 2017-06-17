@@ -9,7 +9,7 @@ exports.getPromociones = {
 }
 exports.getPromocionId = {
   handler : function(request, reply){
-    promocion.findOne({'_id' : request.params.id}, function(err, Promocion){
+    promocion.findOne({'_id' : request.params._id}, function(err, Promocion){
       if(!err && Promocion){
         return reply(Promocion);
       }else if(!err){
@@ -88,7 +88,7 @@ exports.getPromocionHora_Final = {
 exports.modifyPromocion = {
   handler: function(request, reply){
     bebida.update(
-      {'_id': request.params.id},
+      {'_id': request.params._id},
       {$set:
         {
           idProductos : request.payload.idProductos,
@@ -111,7 +111,7 @@ exports.modifyPromocion = {
 }
 exports.deletePromocion = {
   handler: function(request, reply){
-    promocion.findOne({'_id' : request.params.id}, function(err, Promocion){
+    promocion.findOne({'_id' : request.params._id}, function(err, Promocion){
       if(err){
         return reply(boom.badRequest("Could not delete promocion"));
       }else if(!err && Promocion){

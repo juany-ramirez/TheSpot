@@ -9,7 +9,7 @@ exports.getPersonal = {
 }
 exports.getPersonalId = {
   handler : function(request, reply){
-    personal.findOne({'_id' : request.params.id}, function(err, Personal){
+    personal.findOne({'_id' : request.params._id}, function(err, Personal){
       if(!err && Personal){
         return reply(Personal);
       }else if(!err){
@@ -75,7 +75,7 @@ exports.getPersonalTipo = {
 exports.modifyPersonal = {
   handler: function(request, reply){
     personal.update(
-      {'_id': request.params.id},
+      {'_id': request.params._id},
       {$set:
         {
           idUsuario : request.payload.idUsuario,
@@ -97,7 +97,7 @@ exports.modifyPersonal = {
 }
 exports.deletePersonal = {
   handler: function(request, reply){
-    personal.findOne({'_id' : request.params.id}, function(err, Personal){
+    personal.findOne({'_id' : request.params._id}, function(err, Personal){
       if(err){
         return reply(boom.badRequest("Could not delete Personal"));
       }else if(!err && Personal){
