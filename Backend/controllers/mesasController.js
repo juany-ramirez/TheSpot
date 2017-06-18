@@ -95,7 +95,7 @@ exports.deleteMesa = {
 }
 exports.createMesa = {
   handler: function(request, reply){
-    var newMesa = new Mesa({
+    var newMesa = new mesa({
       idOrden : request.payload.idProovedor,
       nombre : request.payload.nombre,
       numero: request.payload.numero
