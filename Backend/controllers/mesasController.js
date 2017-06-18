@@ -65,7 +65,7 @@ exports.modifyMesa = {
       {'_id': request.params._id},
       {$set:
         {
-          idOrden : request.payload.idProovedor,
+          idOrden : request.payload.idProveedor,
           nombre : request.payload.nombre,
           numero: request.payload.numero
         }
@@ -96,7 +96,7 @@ exports.deleteMesa = {
 exports.createMesa = {
   handler: function(request, reply){
     var newMesa = new mesa({
-      idOrden : request.payload.idProovedor,
+      idOrden : request.payload.idProveedor,
       nombre : request.payload.nombre,
       numero: request.payload.numero
     });

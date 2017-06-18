@@ -35,7 +35,7 @@ exports.getOrdenesName = {
 }
 exports.getOrdenesIdCombos = {
   handler : function(request, reply){
-    orden.find({'idProovedor' : request.params.idCombos}, function(err, Ordenes){
+    orden.find({'idProveedor' : request.params.idCombos}, function(err, Ordenes){
       if(!err && Ordenes){
         return reply(Ordenes);
       }else if(!err){

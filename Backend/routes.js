@@ -1,7 +1,7 @@
 var bebidasController = require('./controllers/bebidasController');
 var combosController = require('./controllers/combosController');
 var facturasController = require('./controllers/facturasController');
-var insumosController = require('./controllers/insumoController');
+var insumosController = require('./controllers/insumosController');
 var mesasController = require('./controllers/mesasController');
 var ordenesController = require('./controllers/ordenesController');
 var personalController = require('./controllers/personalController');
@@ -40,7 +40,7 @@ exports.endpoints = [
  	},
 	{
 			method: 'GET',
-			path: '/bebidas/searchbyproveedor/{idProovedor}',
+			path: '/bebidas/searchbyproveedor/{idProveedor}',
 			config: bebidasController.getBebidaProveedor
  	},
 	{
@@ -156,7 +156,7 @@ exports.endpoints = [
  	},
 	{
 			method: 'GET',
-			path: '/insumos/searchbyProovedor/idProveedor',
+			path: '/insumos/searchbyProveedor/idProveedor',
 			config: insumosController.getInsumoProveedor
  	},
 	{
@@ -513,43 +513,43 @@ exports.endpoints = [
 	{
 			method: 'GET',
 			path: '/proveedor/searchbyid/{_id}',
-			config: proveedorController.getProovedorId
+			config: proveedorController.getProveedorId
  	},
 	{
 			method: 'GET',
 			path: '/proveedor/searchbyidInsumo/{idInsumo}',
-			config: proveedorController.getProovedorInsumos
+			config: proveedorController.getProveedorInsumos
  	},
 	{
 			method: 'GET',
 			path: '/proveedor/searchbyidBebidas/{idBebidas}',
-			config: proveedorController.getProovedorBebidas
+			config: proveedorController.getProveedorBebidas
  	},
 	{
 			method: 'GET',
 			path: '/proveedor/searchbyname/{nombre}',
-			config: proveedorController.getProovedorName
+			config: proveedorController.getProveedorName
  	},
 	{
 			method: 'GET',
 			path: '/proveedor/searchbyContacto/{contacto}',
-			config: proveedorController.getProovedorContacto
+			config: proveedorController.getProveedorContacto
  	},
  	{
  			method: 'PUT',
  			path: '/proveedor/update/{_id}',
- 			config: proveedorController.modifyProovedor
+ 			config: proveedorController.modifyProveedor
 
  	},
 	{
 			method: 'DELETE',
 			path: '/proveedor/delete/{_id}',
-			config: proveedorController.deleteProovedor
+			config: proveedorController.deleteProveedor
  	},
 	{
 			method: 'POST',
 			path: '/proveedor/create',
-			config: proveedorController.createProovedor
+			config: proveedorController.createProveedor
  	},
 	{
 			method: 'GET',

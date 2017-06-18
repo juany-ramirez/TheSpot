@@ -46,7 +46,7 @@ exports.getUsuarioIdOrdenes = {
     });
   }
 }
-exports.getUsuarioNombre = {
+exports.getUsuarioName = {
   handler : function(request, reply){
     usuario.findOne({'nombre' : request.params.nombre}, function(err, Usuario){
       if(!err && Usuario){
