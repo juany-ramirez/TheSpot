@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 
 exports.getMesas = {
   handler: function(request, reply){
-    var Mesas = Mesa.find({});
+    var Mesas = mesa.find({});
     reply(Mesas);
   }
 }
