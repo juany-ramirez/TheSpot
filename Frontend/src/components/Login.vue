@@ -30,7 +30,7 @@
               <br>
               <center>
                 <div class='row'>
-                  <button type='submit' name='btn_login' class='col s12 btn btn-large waves-effect -blue'>Login</button>
+                  <a class="col s12 btn-large waves-effect -blue waves-light btn" >Login</a>
                 </div>
               </center>
             </form>
@@ -58,6 +58,7 @@ export default {
 }
 .registro:hover{
   color: #06152F !important;
+  text-decoration: underline;
 }
 .-white{
   background-color: #F4F0EA;
