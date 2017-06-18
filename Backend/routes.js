@@ -9,7 +9,7 @@ var prod_elaborado_detailController = require('./controllers/prod_elaborado_deta
 var productos_elaboradosController = require('./controllers/productos_elaboradosController');
 var productosController = require('./controllers/productosController');
 var promocionesController = require('./controllers/promocionesController');
-var proovedorController = require('./controllers/proveedorController');
+var proveedorController = require('./controllers/proveedorController');
 var usuariosController = require('./controllers/usuariosController');
 exports.endpoints = [
 	{
@@ -40,7 +40,7 @@ exports.endpoints = [
  	},
 	{
 			method: 'GET',
-			path: '/bebidas/searchbyproovedor/{idProovedor}',
+			path: '/bebidas/searchbyproveedor/{idProovedor}',
 			config: bebidasController.getBebidaProveedor
  	},
 	{
@@ -507,49 +507,49 @@ exports.endpoints = [
  	},
 	{
 			method: 'GET',
-		 	path: '/proovedores',
-		 	config: proovedorController.getProovedores
+		 	path: '/proveedores',
+		 	config: proveedorController.getProveedores
  	},
 	{
 			method: 'GET',
-			path: '/proovedor/searchbyid/{_id}',
-			config: proovedorController.getProovedorId
+			path: '/proveedor/searchbyid/{_id}',
+			config: proveedorController.getProovedorId
  	},
 	{
 			method: 'GET',
-			path: '/proovedor/searchbyidInsumo/{idInsumo}',
-			config: proovedorController.getProovedorInsumos
+			path: '/proveedor/searchbyidInsumo/{idInsumo}',
+			config: proveedorController.getProovedorInsumos
  	},
 	{
 			method: 'GET',
-			path: '/proovedor/searchbyidBebidas/{idBebidas}',
-			config: proovedorController.getProovedorBebidas
+			path: '/proveedor/searchbyidBebidas/{idBebidas}',
+			config: proveedorController.getProovedorBebidas
  	},
 	{
 			method: 'GET',
-			path: '/proovedor/searchbyname/{nombre}',
-			config: proovedorController.getProovedorName
+			path: '/proveedor/searchbyname/{nombre}',
+			config: proveedorController.getProovedorName
  	},
 	{
 			method: 'GET',
-			path: '/proovedor/searchbyContacto/{contacto}',
-			config: proovedorController.getProovedorContacto
+			path: '/proveedor/searchbyContacto/{contacto}',
+			config: proveedorController.getProovedorContacto
  	},
  	{
  			method: 'PUT',
- 			path: '/proovedor/update/{_id}',
- 			config: proovedorController.modifyProovedor
+ 			path: '/proveedor/update/{_id}',
+ 			config: proveedorController.modifyProovedor
 
  	},
 	{
 			method: 'DELETE',
-			path: '/proovedor/delete/{_id}',
-			config: proovedorController.deleteProovedor
+			path: '/proveedor/delete/{_id}',
+			config: proveedorController.deleteProovedor
  	},
 	{
 			method: 'POST',
-			path: '/proovedor/create',
-			config: proovedorController.createProovedor
+			path: '/proveedor/create',
+			config: proveedorController.createProovedor
  	},
 	{
 			method: 'GET',

@@ -1,78 +1,78 @@
 var proveedor = require('../schemas/proveedor.js');
 var mongoose = require('mongoose');
 
-exports.getProovedores = {
+exports.getProveedores = {
   handler: function(request, reply){
-    var proovedores = proovedor.find({});
-    reply(proovedores);
+    var proveedores = proveedor.find({});
+    reply(proveedores);
   }
 }
-exports.getProovedorId = {
+exports.getProveedorId = {
   handler : function(request, reply){
-    proovedor.findOne({'_id' : request.params._id}, function(err, Proovedor){
-      if(!err && Proovedor){
-        return reply(Proovedor);
+    proveedor.findOne({'_id' : request.params._id}, function(err, Proveedor){
+      if(!err && Proveedor){
+        return reply(Proveedor);
       }else if(!err){
         return reply(boom.notFound());
       }else if(err){
-        return reply(boom.wrap(err, 'Proovedor not found'));
+        return reply(boom.wrap(err, 'Proveedor not found'));
       }
     });
   }
 }
-exports.getProovedorInsumos = {
+exports.getProveedorInsumos = {
   handler : function(request, reply){
-    proovedor.find({'idInsumo' : request.params.idInsumo}, function(err, Proovedor){
-      if(!err && Proovedor){
-        return reply(Proovedor);
+    proveedor.find({'idInsumo' : request.params.idInsumo}, function(err, Proveedor){
+      if(!err && Proveedor){
+        return reply(Proveedor);
       }else if(!err){
         return reply(boom.notFound());
       }else if(err){
-        return reply(boom.wrap(err, 'Proovedor not found'));
+        return reply(boom.wrap(err, 'Proveedor not found'));
       }
     });
   }
 }
-exports.getProovedorBebidas = {
+exports.getProveedorBebidas = {
   handler : function(request, reply){
-    proovedor.find({'idBebidas' : request.params.idBebidas}, function(err, Proovedor){
-      if(!err && Proovedor){
-        return reply(Proovedor);
+    proveedor.find({'idBebidas' : request.params.idBebidas}, function(err, Proveedor){
+      if(!err && Proveedor){
+        return reply(Proveedor);
       }else if(!err){
         return reply(boom.notFound());
       }else if(err){
-        return reply(boom.wrap(err, 'Proovedor not found'));
+        return reply(boom.wrap(err, 'Proveedor not found'));
       }
     });
   }
 }
-exports.getProovedorName = {
+exports.getProveedorName = {
   handler : function(request, reply){
-    proovedor.find({'nombre' : request.params.idInsumo}, function(err, Proovedor){
-      if(!err && Proovedor){
-        return reply(Proovedor);
+    proveedor.find({'nombre' : request.params.idInsumo}, function(err, Proveedor){
+      if(!err && Proveedor){
+        return reply(Proveedor);
       }else if(!err){
         return reply(boom.notFound());
       }else if(err){
-        return reply(boom.wrap(err, 'Proovedor not found'));
+        return reply(boom.wrap(err, 'Proveedor not found'));
       }
     });
   }
 }
-exports.getProovedorContacto = {
+exports.getProveedorContacto = {
   handler : function(request, reply){
-    proovedor.find({'contacto' : request.params.contacto}, function(err, Proovedor){
-      if(!err && Proovedor){
-        return reply(Proovedor);
+    proveedor.find({'contacto' : request.params.contacto}, function(err, Proveedor){
+      if(!err && Proveedor){
+        return reply(Proveedor);
       }else if(!err){
         return reply(boom.notFound());
       }else if(err){
-        return reply(boom.wrap(err, 'Proovedor not found'));
+        return reply(boom.wrap(err, 'Proveedor not found'));
       }
     });
   }
 }
-exports.modifyProovedor = {
+exports.modifyProveedor = {
   handler: function(request, reply){
     bebida.update(
       {'_id': request.params._id},
@@ -89,7 +89,7 @@ exports.modifyProovedor = {
         }
       }, function(err){
         if(err){
-          return reply(boom.wrap(err, 'Proovedor not found'));
+          return reply(boom.wrap(err, 'Proveedor not found'));
         }else{
           return reply('updated succesfully');
         }
@@ -97,23 +97,23 @@ exports.modifyProovedor = {
     );
   }
 }
-exports.deleteProovedor = {
+exports.deleteProveedor = {
   handler: function(request, reply){
-    proovedor.findOne({'_id' : request.params._id}, function(err, Proovedor){
+    proveedor.findOne({'_id' : request.params._id}, function(err, Proveedor){
       if(err){
-        return reply(boom.badRequest("Could not delete Proovedor"));
-      }else if(!err && Proovedor){
+        return reply(boom.badRequest("Could not delete Proveedor"));
+      }else if(!err && Proveedor){
         Bebida.remove();
-        return reply('Proovedor deleted succesfully');
+        return reply('Proveedor deleted succesfully');
       }else if(!err){
         return reply(boom.notFound());
       }
     });
   }
 }
-exports.createProovedor = {
+exports.createProveedor = {
   handler: function(request, reply){
-    var newProovedor = new proovedor({
+    var newProveedor = new proveedor({
       idInsumo : request.payload.idInsumo,
       idBebidas : request.payload.idBebidas,
       nombre : request.payload.nombre,
@@ -123,7 +123,7 @@ exports.createProovedor = {
       email : request.payload.email,
       direccion : request.payload.direccion
     });
-    newProovedor.save(function(err){
+    newProveedor.save(function(err){
       if(!err){
         return reply({
           success: true

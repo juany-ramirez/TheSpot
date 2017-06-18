@@ -3,13 +3,13 @@ var mongoose = require('mongoose');
 
 exports.getOrdenes = {
   handler: function(request, reply){
-    var ordenes = ordene.find({});
+    var ordenes = orden.find({});
     reply(ordenes);
   }
 }
 exports.getOrdenesId = {
   handler : function(request, reply){
-    ordenes.findOne({'_id' : request.params._id}, function(err, Orden){
+    orden.findOne({'_id' : request.params._id}, function(err, Orden){
       if(!err && Orden){
         return reply(Orden);
       }else if(!err){
