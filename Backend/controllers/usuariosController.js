@@ -59,7 +59,7 @@ exports.getUsuarioNombre = {
     });
   }
 }
-exports.modifyBebida = {
+exports.modifyUsuario = {
   handler: function(request, reply){
     usuario.update(
       {'_id': request.params._id},
