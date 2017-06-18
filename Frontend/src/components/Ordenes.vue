@@ -80,7 +80,7 @@
           <br><br>
           <span id="tituloMesa"> <i class="material-icons">shopping_cart</i> ORDEN 1</span>
           <p>
-            <a class="btn-floating waves-effect waves-light btn grey grey darken-3"><i class="material-icons">receipt</i></a>
+            <a class="btn-floating waves-effect waves-light btn grey grey darken-3" v-model="toggle" v-bind:true-value="a" v-bind:false-value="b"><i class="material-icons">receipt</i></a>
           </p>
           <br><br>
         </div>
@@ -94,6 +94,17 @@
 <script>
 export default {
   name: 'ordenes',
+  data(){
+    return{
+        ordenes: [
+          orden: {},
+          toggle: true
+        ]
+    }
+  },
+  methods:{
+
+  }
   mounted() {
     $('ul.tabs').tabs();
     $('.modal').modal();
