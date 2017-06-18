@@ -9,8 +9,11 @@ import Menu from './components/Menu.vue'
 import Login from './components/Login.vue'
 import Ordenes from './components/Ordenes.vue'
 import Register from './components/Register.vue'
+import VueResource from 'vue-resource'
 
+Vue.use(VueResource);
 Vue.use(VueRouter);
+Vue.http.options.credentials = true;
 
 const router = new VueRouter({
     routes : [

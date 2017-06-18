@@ -9,7 +9,7 @@ exports.getOrdenes = {
 }
 exports.getOrdenesId = {
   handler : function(request, reply){
-    ordenes.findOne({'_id' : request.params.id}, function(err, Orden){
+    ordenes.findOne({'_id' : request.params._id}, function(err, Orden){
       if(!err && Orden){
         return reply(Orden);
       }else if(!err){
@@ -114,7 +114,7 @@ exports.getOrdenPersonal = {
 exports.modifyOrden = {
   handler: function(request, reply){
     orden.update(
-      {'_id': request.params.id},
+      {'_id': request.params._id},
       {$set:
         {
           idCombos: request.payload.idCombos,
@@ -142,7 +142,7 @@ exports.modifyOrden = {
 }
 exports.deleteOrden = {
   handler: function(request, reply){
-    orden.findOne({'_id' : request.params.id}, function(err, Orden){
+    orden.findOne({'_id' : request.params._id}, function(err, Orden){
       if(err){
         return reply(boom.badRequest("Could not delete Orden"));
       }else if(!err && Orden){

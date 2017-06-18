@@ -9,7 +9,7 @@ exports.getProovedores = {
 }
 exports.getProovedorId = {
   handler : function(request, reply){
-    proovedor.findOne({'_id' : request.params.id}, function(err, Proovedor){
+    proovedor.findOne({'_id' : request.params._id}, function(err, Proovedor){
       if(!err && Proovedor){
         return reply(Proovedor);
       }else if(!err){
@@ -75,7 +75,7 @@ exports.getProovedorContacto = {
 exports.modifyProovedor = {
   handler: function(request, reply){
     bebida.update(
-      {'_id': request.params.id},
+      {'_id': request.params._id},
       {$set:
         {
           idInsumo : request.payload.idInsumo,
@@ -99,7 +99,7 @@ exports.modifyProovedor = {
 }
 exports.deleteProovedor = {
   handler: function(request, reply){
-    proovedor.findOne({'_id' : request.params.id}, function(err, Proovedor){
+    proovedor.findOne({'_id' : request.params._id}, function(err, Proovedor){
       if(err){
         return reply(boom.badRequest("Could not delete Proovedor"));
       }else if(!err && Proovedor){

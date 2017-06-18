@@ -9,7 +9,7 @@ exports.getProductos = {
 }
 exports.getProductoId = {
   handler : function(request, reply){
-    producto.findOne({'_id' : request.params.id}, function(err, Producto){
+    producto.findOne({'_id' : request.params._id}, function(err, Producto){
       if(!err && Producto){
         return reply(Producto);
       }else if(!err){
@@ -75,7 +75,7 @@ exports.getProductoPrecio = {
 exports.modifyProducto = {
   handler: function(request, reply){
     producto.update(
-      {'_id': request.params.id},
+      {'_id': request.params._id},
       {$set:
         {
           idBebida : request.payload.idBebida,
@@ -96,7 +96,7 @@ exports.modifyProducto = {
 }
 exports.deleteProducto = {
   handler: function(request, reply){
-    producto.findOne({'_id' : request.params.id}, function(err, Producto){
+    producto.findOne({'_id' : request.params._id}, function(err, Producto){
       if(err){
         return reply(boom.badRequest("Could not delete bebida"));
       }else if(!err && Producto){

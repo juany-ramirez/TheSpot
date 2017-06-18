@@ -9,7 +9,7 @@ exports.getBebidas = {
 }
 exports.getBebidaId = {
   handler : function(request, reply){
-    bebida.findOne({'_id' : request.params.id}, function(err, Bebida){
+    bebida.findOne({'_id' : request.params._id}, function(err, Bebida){
       if(!err && Bebida){
         return reply(Bebida);
       }else if(!err){
@@ -62,7 +62,7 @@ exports.getBebidaTipo = {
 exports.modifyBebida = {
   handler: function(request, reply){
     bebida.update(
-      {'_id': request.params.id},
+      {'_id': request.params._id},
       {$set:
         {
           nombre : request.payload.nombre,
@@ -83,7 +83,7 @@ exports.modifyBebida = {
 }
 exports.deleteBebida = {
   handler: function(request, reply){
-    bebida.findOne({'_id' : request.params.id}, function(err, Bebida){
+    bebida.findOne({'_id' : request.params._id}, function(err, Bebida){
       if(err){
         return reply(boom.badRequest("Could not delete bebida"));
       }else if(!err && Bebida){

@@ -1,19 +1,54 @@
 <template>
-  <div class="-white">
-    <div class="card-panel -white" id="homeCard">
-    </div>
-    <div class="card-panel -white" id="homeCard">
-      <div class="col s12 -lightblue"> </div>
-    </div>
-    <div class="card-panel -white" id="homeCard">
-      <div class="col s12 -lightblue"> </div>
-    </div>
+  <div id="root">
+      <h2 class="menu-section-title">Bebidas</h2>
+      <!-- Item starts -->
+      <table>
+			<thead>
+				<tr>
+          <th>_id</th>
+          <th>idBebida</th>
+          <th>idProducto_Elaborado</th>
+					<th>Nombre</th>
+					<th>Descripcion</th>
+					<th>Precio</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr v-for="producto in productos">
+          <td>{{producto._id}}</td>
+          <td>{{producto.idBebida}}</td>
+					<td>{{producto.idProducto_Elaborado}}</td>
+					<td>{{producto.nombre}}</td>
+					<td>{{producto.descripcion}}</td>
+					<td>{{producto.precio}}</td>
+				</tr>
+			</tbody>
+		</table>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'menu'
+  name: 'menu',
+  data(){
+    return{
+      productos: [],
+      producto:{
+
+      },
+      loading: false
+    }
+  },
+  methods: {
+    getProductos(){
+				this.$http.get('http://localhost:8000/productos').then((response)=>{
+					this.productos=response.body;
+				});
+			}
+  },
+      beforeMount(){
+			this.getProductos();
+		}
 }
 </script>
 
@@ -47,6 +82,10 @@ export default {
   .-black{
     background-color: #262626;
     color: #fff;
+  }
+  h4{
+    font-family: 'Playfair Display';
+    text-align: left;
   }
 
 </style>
