@@ -9,6 +9,7 @@ server.connection({
     port: ~~process.env.PORT || 8000,
     routes: {
       cors: {//cross origin request service: permite rquests de afuera del server
+        credentials: true,
         origin: ["*"]
       }
     }

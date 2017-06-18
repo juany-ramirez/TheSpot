@@ -9,7 +9,7 @@ exports.getProductos_elaborados = {
 }
 exports.getProductos_elaboradoId = {
   handler : function(request, reply){
-    producto_elaborado.findOne({'_id' : request.params.id}, function(err, Producto_elaborado){
+    producto_elaborado.findOne({'_id' : request.params._id}, function(err, Producto_elaborado){
       if(!err && Producto_elaborado){
         return reply(Producto_elaborado);
       }else if(!err){
@@ -49,10 +49,10 @@ exports.getIdProducto_Elaborado_Tipo = {
 exports.modifyProductos_elaborado = {
   handler: function(request, reply){
     producto_elaborado.update(
-      {'_id': request.params.id},
+      {'_id': request.params._id},
       {$set:
         {
-          idProducto_Elaborado_Detail : request.payload.nombre,
+          idProducto_Elaborado_Detail : request.payload.idProducto_Elaborado_Detail,
           tipo : request.payload.tipo,
           descripcion : request.payload.descripcion
         }
@@ -68,11 +68,11 @@ exports.modifyProductos_elaborado = {
 }
 exports.deleteProducto_elaborado = {
   handler: function(request, reply){
-    producto_elaborado.findOne({'_id' : request.params.id}, function(err, Producto_elaborado){
+    producto_elaborado.findOne({'_id' : request.params._id}, function(err, Producto_elaborado){
       if(err){
         return reply(boom.badRequest("Could not delete bebida"));
       }else if(!err && Producto_elaborado){
-        Bebida.remove();
+        Producto_elaborado.remove();
         return reply('Producto_elaborado deleted succesfully');
       }else if(!err){
         return reply(boom.notFound());
@@ -83,7 +83,7 @@ exports.deleteProducto_elaborado = {
 exports.createProducto_elaborado = {
   handler: function(request, reply){
     var newProducto_Elaborado = new producto_elaborado({
-      idProducto_Elaborado_Detail : request.payload.nombre,
+      idProducto_Elaborado_Detail : request.payload.idProducto_Elaborado_Detail,
       tipo : request.payload.tipo,
       descripcion : request.payload.descripcion
     });

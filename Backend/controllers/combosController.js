@@ -9,7 +9,7 @@ exports.getCombos = {
 }
 exports.getComboId = {
   handler : function(request, reply){
-    combo.findOne({'_id' : request.params.id}, function(err, Combo){
+    combo.findOne({'_id' : request.params._id}, function(err, Combo){
       if(!err && Combo){
         return reply(Combo);
       }else if(!err){
@@ -49,7 +49,7 @@ exports.getComboPrecio = {
 exports.modifyCombo = {
   handler: function(request, reply){
     combo.update(
-      {'_id': request.params.id},
+      {'_id': request.params._id},
       {$set:
         {
           idProductos : request.payload.idProductos,
@@ -69,7 +69,7 @@ exports.modifyCombo = {
 }
 exports.deleteCombo = {
   handler: function(request, reply){
-    combo.findOne({'_id' : request.params.id}, function(err, Combo){
+    combo.findOne({'_id' : request.params._id}, function(err, Combo){
       if(err){
         return reply(boom.badRequest("Could not delete Combo"));
       }else if(!err && Combo){

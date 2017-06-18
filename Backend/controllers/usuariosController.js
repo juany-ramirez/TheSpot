@@ -9,7 +9,7 @@ exports.getUsuarios = {
 }
 exports.getUsuarioId = {
   handler : function(request, reply){
-    usuario.findOne({'_id' : request.params.id}, function(err, Usuario){
+    usuario.findOne({'_id' : request.params._id}, function(err, Usuario){
       if(!err && Usuario){
         return reply(Usuario);
       }else if(!err){
@@ -62,7 +62,7 @@ exports.getUsuarioNombre = {
 exports.modifyBebida = {
   handler: function(request, reply){
     usuario.update(
-      {'_id': request.params.id},
+      {'_id': request.params._id},
       {$set:
         {
           IdPersonal : request.payload.IdPersonal,
@@ -84,7 +84,7 @@ exports.modifyBebida = {
 }
 exports.deleteUsuario = {
   handler: function(request, reply){
-    usuario.findOne({'_id' : request.params.id}, function(err, Usuario){
+    usuario.findOne({'_id' : request.params._id}, function(err, Usuario){
       if(err){
         return reply(boom.badRequest("Could not delete Usuario"));
       }else if(!err && Usuario){

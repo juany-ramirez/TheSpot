@@ -9,7 +9,7 @@ exports.getMesas = {
 }
 exports.getMesaId = {
   handler : function(request, reply){
-    mesa.findOne({'_id' : request.params.id}, function(err, Mesa){
+    mesa.findOne({'_id' : request.params._id}, function(err, Mesa){
       if(!err && Mesa){
         return reply(Mesa);
       }else if(!err){
@@ -62,7 +62,7 @@ exports.getMesaIdOrdenes = {
 exports.modifyMesa = {
   handler: function(request, reply){
     mesa.update(
-      {'_id': request.params.id},
+      {'_id': request.params._id},
       {$set:
         {
           idOrden : request.payload.idProovedor,
@@ -81,7 +81,7 @@ exports.modifyMesa = {
 }
 exports.deleteMesa = {
   handler: function(request, reply){
-    mesa.findOne({'_id' : request.params.id}, function(err, mesa){
+    mesa.findOne({'_id' : request.params._id}, function(err, mesa){
       if(err){
         return reply(boom.badRequest("Could not delete mesa"));
       }else if(!err && Mesa){

@@ -9,7 +9,7 @@ exports.getInsumos = {
 }
 exports.getInsumoId = {
   handler : function(request, reply){
-    insumo.findOne({'_id' : request.params.id}, function(err, Insumo){
+    insumo.findOne({'_id' : request.params._id}, function(err, Insumo){
       if(!err && Insumo){
         return reply(Insumo);
       }else if(!err){
@@ -62,7 +62,7 @@ exports.getInsumoInventario = {
 exports.modifyInsumo = {
   handler: function(request, reply){
     insumo.update(
-      {'_id': request.params.id},
+      {'_id': request.params._id},
       {$set:
         {
           nombre : request.payload.nombre,
@@ -81,7 +81,7 @@ exports.modifyInsumo = {
 }
 exports.deleteInsumo = {
   handler: function(request, reply){
-    insumo.findOne({'_id' : request.params.id}, function(err, Insumos){
+    insumo.findOne({'_id' : request.params._id}, function(err, Insumos){
       if(err){
         return reply(boom.badRequest("Could not delete Insumo"));
       }else if(!err && Insumo){

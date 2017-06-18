@@ -9,7 +9,7 @@ exports.getFacturas = {
 }
 exports.getFacturaId = {
   handler : function(request, reply){
-    factura.findOne({'_id' : request.params.id}, function(err, Factura){
+    factura.findOne({'_id' : request.params._id}, function(err, Factura){
       if(!err && Factura){
         return reply(Factura);
       }else if(!err){
@@ -49,7 +49,7 @@ exports.getFacturaIdOrden = {
 exports.modifyFactura = {
   handler: function(request, reply){
     factura.update(
-      {'_id': request.params.id},
+      {'_id': request.params._id},
       {$set:
         {
           idOrden : request.payload.idOrden,
@@ -72,7 +72,7 @@ exports.modifyFactura = {
 }
 exports.deleteFactura = {
   handler: function(request, reply){
-    factura.findOne({'_id' : request.params.id}, function(err, Facturas){
+    factura.findOne({'_id' : request.params._id}, function(err, Facturas){
       if(err){
         return reply(boom.badRequest("Could not delete factura"));
       }else if(!err && Factura){
