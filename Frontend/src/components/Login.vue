@@ -30,7 +30,7 @@
               <br>
               <center>
                 <div class='row'>
-                  <a class="col s12 btn-large waves-effect -blue waves-light btn" >Login</a>
+                  <a class="col s12 btn-large waves-effect waves-light btn -blue" >Login</a>
                 </div>
               </center>
             </form>
