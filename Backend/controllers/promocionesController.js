@@ -35,7 +35,7 @@ exports.getPromocionProductos = {
 }
 exports.getPromocionDescuento = {
   handler : function(request, reply){
-    promocion.find({'idProovedor' : request.params.descuento}, function(err, Promocion){
+    promocion.find({'idProveedor' : request.params.descuento}, function(err, Promocion){
       if(!err && Promocion){
         return reply(Promocion);
       }else if(!err){
@@ -87,7 +87,7 @@ exports.getPromocionHora_Final = {
 }
 exports.modifyPromocion = {
   handler: function(request, reply){
-    bebida.update(
+    promocion.update(
       {'_id': request.params._id},
       {$set:
         {
@@ -115,7 +115,7 @@ exports.deletePromocion = {
       if(err){
         return reply(boom.badRequest("Could not delete promocion"));
       }else if(!err && Promocion){
-        Bebida.remove();
+        Promocion.remove();
         return reply('Promocion deleted succesfully');
       }else if(!err){
         return reply(boom.notFound());

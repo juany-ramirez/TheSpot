@@ -46,7 +46,7 @@ exports.getUsuarioIdOrdenes = {
     });
   }
 }
-exports.getUsuarioNombre = {
+exports.getUsuarioName = {
   handler : function(request, reply){
     usuario.findOne({'nombre' : request.params.nombre}, function(err, Usuario){
       if(!err && Usuario){
@@ -59,7 +59,7 @@ exports.getUsuarioNombre = {
     });
   }
 }
-exports.modifyBebida = {
+exports.modifyUsuario = {
   handler: function(request, reply){
     usuario.update(
       {'_id': request.params._id},

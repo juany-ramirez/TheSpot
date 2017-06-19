@@ -35,7 +35,7 @@ exports.getInsumoName = {
 }
 exports.getInsumoProveedor = {
   handler : function(request, reply){
-    insumo.find({'idProovedor' : request.params.idProveedor}, function(err, Insumos){
+    insumo.find({'idProveedor' : request.params.idProveedor}, function(err, Insumos){
       if(!err && Insumos){
         return reply(Insumos);
       }else if(!err){
@@ -67,7 +67,7 @@ exports.modifyInsumo = {
         {
           nombre : request.payload.nombre,
           inventario : request.payload.inventario,
-          idProovedor : request.payload.idProovedor
+          idProveedor : request.payload.idProveedor
         }
       }, function(err){
         if(err){
@@ -81,9 +81,9 @@ exports.modifyInsumo = {
 }
 exports.deleteInsumo = {
   handler: function(request, reply){
-    insumo.findOne({'_id' : request.params._id}, function(err, Insumos){
+    insumo.findOne({'_id' : request.params._id}, function(err, Insumo){
       if(err){
-        return reply(boom.badRequest("Could not delete Insumo"));
+        return reply(boom.badRequest("Could not delete insumo"));
       }else if(!err && Insumo){
         Insumo.remove();
         return reply('Insumo deleted succesfully');
@@ -98,7 +98,7 @@ exports.createInsumo = {
     var newInsumo = new insumo({
       nombre : request.payload.nombre,
       inventario : request.payload.inventario,
-      idProovedor : request.payload.idProovedor
+      idProveedor : request.payload.idProveedor
     });
     newInsumo.save(function(err){
       if(!err){

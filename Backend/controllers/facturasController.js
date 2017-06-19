@@ -75,8 +75,8 @@ exports.deleteFactura = {
     factura.findOne({'_id' : request.params._id}, function(err, Facturas){
       if(err){
         return reply(boom.badRequest("Could not delete factura"));
-      }else if(!err && Factura){
-        Factura.remove();
+      }else if(!err && Facturas){
+        Facturas.remove();
         return reply('Factura deleted succesfully');
       }else if(!err){
         return reply(boom.notFound());
@@ -87,11 +87,13 @@ exports.deleteFactura = {
 exports.createFactura = {
   handler: function(request, reply){
     var newFactura = new factura({
+      idOrden : request.payload.idOrden,
       nombre : request.payload.nombre,
-      idProovedor : request.payload.idProovedor,
-      tipo : request.payload.tipo,
-      inventario : request.payload.inventario,
-      descripcion : request.payload.descripcion
+      subtotal : request.payload.subtotal,
+      isv : request.payload.isv,
+      propina : request.payload.propina,
+      descuento: request.payload.descuento,
+      total: request.payload.total
     });
     newFactura.save(function(err){
       if(!err){

@@ -35,7 +35,7 @@ exports.getBebidaName = {
 }
 exports.getBebidaProveedor = {
   handler : function(request, reply){
-    bebida.find({'idProovedor' : request.params.idProveedor}, function(err, Bebidas){
+    bebida.find({'idProveedor' : request.params.idProveedor}, function(err, Bebidas){
       if(!err && Bebidas){
         return reply(Bebidas);
       }else if(!err){
@@ -66,7 +66,7 @@ exports.modifyBebida = {
       {$set:
         {
           nombre : request.payload.nombre,
-          idProovedor : request.payload.idProovedor,
+          idProveedor : request.payload.idProveedor,
           tipo : request.payload.tipo,
           inventario : request.payload.inventario,
           descripcion : request.payload.descripcion
@@ -99,7 +99,7 @@ exports.createBebida = {
   handler: function(request, reply){
     var newBebida = new bebida({
       nombre : request.payload.nombre,
-      idProveedor : request.payload.idProovedor,
+      idProveedor : request.payload.idProveedor,
       tipo : request.payload.tipo,
       inventario : request.payload.inventario,
       descripcion : request.payload.descripcion

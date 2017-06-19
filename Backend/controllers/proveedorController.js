@@ -74,7 +74,7 @@ exports.getProveedorContacto = {
 }
 exports.modifyProveedor = {
   handler: function(request, reply){
-    bebida.update(
+    proveedor.update(
       {'_id': request.params._id},
       {$set:
         {
@@ -103,7 +103,7 @@ exports.deleteProveedor = {
       if(err){
         return reply(boom.badRequest("Could not delete Proveedor"));
       }else if(!err && Proveedor){
-        Bebida.remove();
+        Proveedor.remove();
         return reply('Proveedor deleted succesfully');
       }else if(!err){
         return reply(boom.notFound());
