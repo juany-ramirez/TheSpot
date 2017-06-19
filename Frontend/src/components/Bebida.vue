@@ -1,14 +1,12 @@
 <template>
   <div id="root">
-      <h2 class="menu-section-title">Admin Control</h2>
-      <!-- Item starts -->
 
   </div>
 </template>
 
 <script>
 export default {
-  name: 'admin',
+  name: 'bebida',
   data(){
     return{
 
