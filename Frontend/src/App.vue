@@ -29,8 +29,13 @@
       </router-link>
       <ul>
         <li><a class="btn-floating -red"><i class="material-icons">insert_chart</i></a></li>
-        <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
         <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
+        <li>
+          <router-link to="/admin">
+            <a class="btn-floating yellow darken-1">
+              <i class="material-icons">device_hub</i>
+            </a>
+          </router-link>
         <li>
           <router-link to="/ordenes">
             <a class="btn-floating blue">

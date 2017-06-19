@@ -9,6 +9,7 @@ import Menu from './components/Menu.vue'
 import Login from './components/Login.vue'
 import Ordenes from './components/Ordenes.vue'
 import Register from './components/Register.vue'
+import Admin from './components/Admin.vue'
 import VueResource from 'vue-resource'
 
 Vue.use(VueResource);
@@ -26,6 +27,11 @@ const router = new VueRouter({
         name: 'Menu',
         path:'/menu',
         component:Menu
+      },
+      {
+        name: 'Admin',
+        path:'/admin',
+        component:Admin
       },
       {
         name: 'Ordenes',
