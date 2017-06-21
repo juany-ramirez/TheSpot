@@ -1,5 +1,6 @@
 var mesa = require('../schemas/mesa.js');
 var mongoose = require('mongoose');
+var boom = require('boom');
 
 exports.getMesas = {
   handler: function(request, reply){

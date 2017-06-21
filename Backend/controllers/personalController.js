@@ -1,5 +1,6 @@
 var personal = require('../schemas/personal.js');
 var mongoose = require('mongoose');
+var boom = require('boom');
 
 exports.getPersonal = {
   handler: function(request, reply){

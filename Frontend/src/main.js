@@ -9,6 +9,17 @@ import Menu from './components/Menu.vue'
 import Login from './components/Login.vue'
 import Ordenes from './components/Ordenes.vue'
 import Register from './components/Register.vue'
+import Admin from './components/Admin.vue'
+
+import Bebida from './components/Bebida.vue'
+import Combo from './components/Combo.vue'
+import Insumo from './components/Insumo.vue'
+import Mesa from './components/Mesa.vue'
+import Personal from './components/Personal.vue'
+import Producto from './components/Producto.vue'
+import Promocion from './components/Promocion.vue'
+import Proveedor from './components/Proveedor.vue'
+
 import VueResource from 'vue-resource'
 
 Vue.use(VueResource);
@@ -41,6 +52,53 @@ const router = new VueRouter({
         name: 'Login',
         path:'/login',
         component:Login
+      },
+      {
+        name: 'Admin',
+        path:'/admin',
+        component:Admin,
+        children: [
+          {
+            name: 'Bebida',
+            path:"/bebida",
+            component:Bebida
+          },
+          {
+            name: 'Combo',
+            path:"/combo",
+            component:Combo
+          },
+          {
+            name: 'Insumo',
+            path:"/insumo",
+            component:Insumo
+          },
+          {
+            name: 'Mesa',
+            path:"/mesa",
+            component:Mesa
+          },
+          {
+            name: 'Personal',
+            path:"/personal",
+            component:Personal
+          },
+          {
+            name: 'Producto',
+            path:"/producto",
+            component:Producto
+          },
+          {
+            name: 'Promocion',
+            path:"/promocion",
+            component:Promocion
+          },
+          {
+            name: 'Proveedor',
+            path:"/proveedor",
+            component:Proveedor
+          }
+        ]
       }
     ],
     mode: 'history'

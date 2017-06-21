@@ -1,5 +1,6 @@
 var factura = require('../schemas/factura.js');
 var mongoose = require('mongoose');
+var boom = require('boom');
 
 exports.getFacturas = {
   handler: function(request, reply){
