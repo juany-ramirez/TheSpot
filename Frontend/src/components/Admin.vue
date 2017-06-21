@@ -123,11 +123,12 @@ export default {
     text-align: left;
   }
   #root{
-    
-    font-family: 'Playfair Display';
-    font-weight: bold;
+
+    font-family: 'Roboto', sans-serif;
+    font-weight: lighter;
   }
   #root h2{
+    font-family: 'Playfair Display';
     text-indent: 50px;
   }
 </style>
