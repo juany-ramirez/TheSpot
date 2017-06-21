@@ -41,26 +41,26 @@
     </ul>
     <div class="row">
         <div class="input-field col s6">
-          <input type="text" placeholder="Nombre" v-model="bebida.nombre" :disabled="loading"  id="Nombre">
-          <label for="Nombre">{{bebida.nombre}}</label>
+          <input v-on:input="bebida.nombre = $event.target.value" type="text" v-model="bebida.nombre" :disabled="loading"  id="Nombre">
+          <label for="Nombre">Nombre</label>
         </div>
         <div class="input-field col s6">
-          <input v-model="bebida.idProveedor" :disabled="loading" id="idProveedor" type="text" >
+          <input v-on:input="bebida.idProveedor = $event.target.value" v-model="bebida.idProveedor" :disabled="loading" id="idProveedor" type="text" >
           <label for="idProveedor">Id Proveedor</label>
         </div>
         <div class="input-field col s6">
-          <input v-model="bebida.tipo" :disabled="loading"  id="Tipo" type="text" class="validate">
+          <input v-on:input="bebida.tipo = $event.target.value" v-model="bebida.tipo" :disabled="loading"  id="Tipo" type="text" class="validate">
           <label for="Tipo">Tipo</label>
         </div>
         <div class="input-field col s6">
-          <input type="number" v-model="bebida.inventario" :disabled="loading"  id="Inventario">
+          <input v-on:input="bebida.inventario = $event.target.value" type="number" v-model="bebida.inventario" :disabled="loading"  id="Inventario">
           <label for="Inventario">Inventario</label>
         </div>
         <div class="row">
           <form class="col s12">
             <div class="row">
               <div class="input-field col s12">
-                <textarea v-model="bebida.descripcion" :disabled="loading"  id="Descripcion" type="text"  class="materialize-textarea"></textarea>
+                <textarea v-on:input="bebida.descripcion = $event.target.value" v-model="bebida.descripcion" :disabled="loading"  id="Descripcion" type="text"  class="materialize-textarea"></textarea>
                 <label for="Descripcion">Descripción</label>
               </div>
             </div>
@@ -73,6 +73,9 @@
         </a>
       </div>
   	  <div id="test-swipe-2" class="col s12">
+        <div class="card">
+            Atención: Los cambios realizados no se guardan hasta que haga click en el botón de update.
+        </div>
 				<a class="waves-effect waves-light btn-large" v-on:click="modifyBebida" :disabled="loading" id="boton">
 					<i class="material-icons left">update</i>Update
         </a>
@@ -105,11 +108,7 @@ export default {
 				.then((response)=>{
 					this.loading=false;
 					if(response.body.success){
-            $("#Nombre").val('');
-            $("#idProveedor").val('');
-            $("#Tipo").val('');
-            $("#Inventario").val('');
-            $("#Descripcion").val('');
+            this.bebida= {};
 						sweetAlert("Creado con exito!", "Los cambios estan en la tabla", "success");
 						this.getBebida();
 					}else{
@@ -122,11 +121,7 @@ export default {
           this.idModificar = '';
           this.bebida= {};
           this.selectedTab= 'test-swipe-1';
-          $("#Nombre").val('');
-          $("#idProveedor").val('');
-          $("#Tipo").val('');
-          $("#Inventario").val('');
-          $("#Descripcion").val('');
+          this.bebida= {};
           Materialize.updateTextFields();
         }else{
           if(this.idModificar === ''){
@@ -140,11 +135,6 @@ export default {
         this.idModificar = bebida._id;
         this.bebida = bebida;
         $('ul.tabs').tabs('select_tab', 'test-swipe-2');
-        $("#Nombre").val(bebida.nombre);
-        $("#idProveedor").val(bebida.idProveedor);
-        $("#Tipo").val(bebida.tipo);
-        $("#Inventario").val(bebida.inventario);
-        $("#Descripcion").val(bebida.descripcion);
         Materialize.updateTextFields();
 			},
       modifyBebida(){
@@ -158,11 +148,6 @@ export default {
               this.loading=false;
   						sweetAlert("Modificado con exito!", "Los cambios estan en la tabla", "success");
               this.bebida= {};
-              $("#Nombre").val('');
-              $("#idProveedor").val('');
-              $("#Tipo").val('');
-              $("#Inventario").val('');
-              $("#Descripcion").val('');
   					}else{
   						sweetAlert("Oops...", "Error al modificar", "error");
               this.loading=false;
@@ -196,6 +181,14 @@ export default {
 </script>
 
 <style scoped>
+  .card{
+    padding: 10px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: lighter;
+    background-color: black;
+    font-size: 15px;
+    color: white;
+  }
   td{
     font-family: 'Source Sans Pro', sans-serif;
   }
