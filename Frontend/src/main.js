@@ -16,6 +16,7 @@ import Combo from './components/Combo.vue'
 import Insumo from './components/Insumo.vue'
 import Mesa from './components/Mesa.vue'
 import Personal from './components/Personal.vue'
+import Producto from './components/Producto.vue'
 import Promocion from './components/Promocion.vue'
 import Proveedor from './components/Proveedor.vue'
 
@@ -38,11 +39,6 @@ const router = new VueRouter({
         component:Menu
       },
       {
-        name: 'Admin',
-        path:'/admin',
-        component:Admin
-      },
-      {
         name: 'Ordenes',
         path:"/ordenes",
         component:Ordenes
@@ -58,39 +54,51 @@ const router = new VueRouter({
         component:Login
       },
       {
-        name: 'Bebida',
-        path:"/bebida",
-        component:Bebida
-      },
-      {
-        name: 'Combo',
-        path:"/combo",
-        component:Combo
-      },
-      {
-        name: 'Insumo',
-        path:"/insumo",
-        component:Insumo
-      },
-      {
-        name: 'Mesa',
-        path:"/mesa",
-        component:Mesa
-      },
-      {
-        name: 'Personal',
-        path:"/personal",
-        component:Personal
-      },
-      {
-        name: 'Promocion',
-        path:"/promocion",
-        component:Promocion
-      },
-      {
-        name: 'Proveedor',
-        path:"/proveedor",
-        component:Proveedor
+        name: 'Admin',
+        path:'/admin',
+        component:Admin,
+        children: [
+          {
+            name: 'Bebida',
+            path:"/bebida",
+            component:Bebida
+          },
+          {
+            name: 'Combo',
+            path:"/combo",
+            component:Combo
+          },
+          {
+            name: 'Insumo',
+            path:"/insumo",
+            component:Insumo
+          },
+          {
+            name: 'Mesa',
+            path:"/mesa",
+            component:Mesa
+          },
+          {
+            name: 'Personal',
+            path:"/personal",
+            component:Personal
+          },
+          {
+            name: 'Producto',
+            path:"/producto",
+            component:Producto
+          },
+          {
+            name: 'Promocion',
+            path:"/promocion",
+            component:Promocion
+          },
+          {
+            name: 'Proveedor',
+            path:"/proveedor",
+            component:Proveedor
+          }
+        ]
       }
     ],
     mode: 'history'

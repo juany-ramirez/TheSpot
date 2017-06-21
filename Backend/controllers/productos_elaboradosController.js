@@ -1,5 +1,6 @@
 var producto_elaborado = require('../schemas/producto_elaborado.js');
 var mongoose = require('mongoose');
+var boom = require('boom');
 
 exports.getProductos_elaborados = {
   handler: function(request, reply){

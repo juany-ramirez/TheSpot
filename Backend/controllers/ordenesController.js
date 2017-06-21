@@ -1,5 +1,6 @@
 var orden = require('../schemas/orden.js');
 var mongoose = require('mongoose');
+var boom = require('boom');
 
 exports.getOrdenes = {
   handler: function(request, reply){

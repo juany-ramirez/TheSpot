@@ -1,5 +1,6 @@
 var promocion = require('../schemas/promocion.js');
 var mongoose = require('mongoose');
+var boom = require('boom');
 
 exports.getPromociones = {
   handler: function(request, reply){

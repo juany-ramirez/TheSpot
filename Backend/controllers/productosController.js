@@ -1,5 +1,6 @@
 var producto = require('../schemas/producto.js');
 var mongoose = require('mongoose');
+var boom = require('boom');
 
 exports.getProductos = {
   handler: function(request, reply){

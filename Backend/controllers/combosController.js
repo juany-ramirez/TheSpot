@@ -1,5 +1,6 @@
 var combo = require('../schemas/combo.js');
 var mongoose = require('mongoose');
+var boom = require('boom');
 
 exports.getCombos = {
   handler: function(request, reply){

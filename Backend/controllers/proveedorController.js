@@ -1,5 +1,6 @@
 var proveedor = require('../schemas/proveedor.js');
 var mongoose = require('mongoose');
+var boom = require('boom');
 
 exports.getProveedores = {
   handler: function(request, reply){
