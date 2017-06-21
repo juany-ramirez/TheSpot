@@ -12,11 +12,11 @@ exports.getProductoId = {
   handler : function(request, reply){
     producto.findOne({'_id' : request.params._id}, function(err, Producto){
       if(!err && Producto){
-        return reply(Producto);
+        return reply({producto: Producto,success:true});
       }else if(!err){
-        return reply(boom.notFound());
+        return reply({success:false});
       }else if(err){
-        return reply(boom.wrap(err, 'Producto not found'));
+        return reply({success:false});
       }
     });
   }
@@ -25,11 +25,11 @@ exports.getProductoIdBebida = {
   handler : function(request, reply){
     producto.find({'idBebida' : request.params.idBebida}, function(err, Productos){
       if(!err && Productos){
-        return reply(Productos);
+        return reply({producto: Productos,success:true});
       }else if(!err){
-        return reply(boom.notFound());
+        return reply({success:false});
       }else if(err){
-        return reply(boom.wrap(err, 'Productos not found'));
+        return reply({success:false});
       }
     });
   }
@@ -38,11 +38,11 @@ exports.getProductoidProducto_Elaborado = {
   handler : function(request, reply){
     producto.find({'idProducto_Elaborado' : request.params.idProducto_Elaborado}, function(err, Productos){
       if(!err && Productos){
-        return reply(Productos);
+        return reply({producto: Productos,success:true});
       }else if(!err){
-        return reply(boom.notFound());
+        return reply({success:false});
       }else if(err){
-        return reply(boom.wrap(err, 'Productos not found'));
+        return reply({success:false});
       }
     });
   }
@@ -51,11 +51,11 @@ exports.getProductoNombre = {
   handler : function(request, reply){
     producto.find({'nombre' : request.params.nombre}, function(err, Productos){
       if(!err && Productos){
-        return reply(Productos);
+        return reply({producto: Productos,success:true});
       }else if(!err){
-        return reply(boom.notFound());
+        return reply({success:false});
       }else if(err){
-        return reply(boom.wrap(err, 'Productos not found'));
+        return reply({success:false});
       }
     });
   }
@@ -64,11 +64,11 @@ exports.getProductoPrecio = {
   handler : function(request, reply){
     producto.find({'precio' : request.params.precio}, function(err, Productos){
       if(!err && Productos){
-        return reply(Productos);
+        return reply({producto: Productos,success:true});
       }else if(!err){
-        return reply(boom.notFound());
+        return reply({success:false});
       }else if(err){
-        return reply(boom.wrap(err, 'Productos not found'));
+        return reply({success:false});
       }
     });
   }
@@ -87,9 +87,9 @@ exports.modifyProducto = {
         }
       }, function(err){
         if(err){
-          return reply(boom.wrap(err, 'Producto not found'));
+          return reply({success:false});
         }else{
-          return reply('updated succesfully');
+          return reply({success:true});
         }
       }
     );
@@ -99,12 +99,12 @@ exports.deleteProducto = {
   handler: function(request, reply){
     producto.findOne({'_id' : request.params._id}, function(err, Producto){
       if(err){
-        return reply(boom.badRequest("Could not delete bebida"));
+        return reply({success:false});
       }else if(!err && Producto){
         Producto.remove();
-        return reply('Bebida deleted succesfully');
+        return reply({success:true});
       }else if(!err){
-        return reply(boom.notFound());
+        return reply({success:false});
       }
     });
   }

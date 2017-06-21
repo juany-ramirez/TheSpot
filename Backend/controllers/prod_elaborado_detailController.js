@@ -12,11 +12,11 @@ exports.getProd_elaborado_detailId = {
   handler : function(request, reply){
     producto_elaborado_detail.findOne({'_id' : request.params._id}, function(err, Producto_elaborado_detail){
       if(!err && Producto_elaborado_detail){
-        return reply(Producto_elaborado_detail);
+        return reply({producto_elaborado_detail: Producto_elaborado_details,success:true});
       }else if(!err){
-        return reply(boom.notFound());
+        return reply({success:false});
       }else if(err){
-        return reply(boom.wrap(err, 'Producto_elaborado_detail not found'));
+        return reply({success:false});
       }
     });
   }
@@ -25,11 +25,11 @@ exports.getProd_elaborado_detailIdElaborado = {
   handler : function(request, reply){
     producto_elaborado_detail.find({'idProducto_Elaborado' : request.params.idProducto_Elaborado}, function(err, Producto_elaborado_details){
       if(!err && Producto_elaborado_details){
-        return reply(Producto_elaborado_details);
+        return reply({producto_elaborado_detail: Producto_elaborado_details,success:true});
       }else if(!err){
-        return reply(boom.notFound());
+        return reply({success:false});
       }else if(err){
-        return reply(boom.wrap(err, 'Producto_elaborado_details not found'));
+        return reply({success:false});
       }
     });
   }
@@ -38,11 +38,11 @@ exports.getProd_elaborado_detailIdBebida = {
   handler : function(request, reply){
     producto_elaborado_detail.find({'idBebida' : request.params.idBebida}, function(err, Producto_elaborado_details){
       if(!err && Producto_elaborado_details){
-        return reply(Producto_elaborado_details);
+        return reply({producto_elaborado_detail: Producto_elaborado_details,success:true});
       }else if(!err){
-        return reply(boom.notFound());
+        return reply({success:false});
       }else if(err){
-        return reply(boom.wrap(err, 'Producto_elaborado_details not found'));
+        return reply({success:false});
       }
     });
   }
@@ -51,11 +51,11 @@ exports.getProd_elaborado_detailIdInsumo = {
   handler : function(request, reply){
     producto_elaborado_detail.find({'idInsumo' : request.params.idInsumo}, function(err, Producto_elaborado_details){
       if(!err && Producto_elaborado_details){
-        return reply(Producto_elaborado_details);
+        return reply({producto_elaborado_detail: Producto_elaborado_details,success:true});
       }else if(!err){
-        return reply(boom.notFound());
+        return reply({success:false});
       }else if(err){
-        return reply(boom.wrap(err, 'Producto_elaborado_details not found'));
+        return reply({success:false});
       }
     });
   }
@@ -73,9 +73,9 @@ exports.modifyProd_elaborado_detail = {
         }
       }, function(err){
         if(err){
-          return reply(boom.wrap(err, 'rod_elaborado_detail not found'));
+          return reply({success:false});
         }else{
-          return reply('updated succesfully');
+          return reply({success:true});
         }
       }
     );
@@ -85,12 +85,12 @@ exports.deleteProd_elaborado_detail = {
   handler: function(request, reply){
     producto_elaborado_detail.findOne({'_id' : request.params._id}, function(err, Producto_elaborado_detail){
       if(err){
-        return reply(boom.badRequest("Could not delete Producto_elaborado_detail"));
+        return reply({success:false});
       }else if(!err && Producto_elaborado_detail){
         Producto_elaborado_detail.remove();
-        return reply('Producto_elaborado_detail deleted succesfully');
+        return reply({success:true});
       }else if(!err){
-        return reply(boom.notFound());
+        return reply({success:false});
       }
     });
   }

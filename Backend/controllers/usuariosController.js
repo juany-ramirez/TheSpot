@@ -12,11 +12,11 @@ exports.getUsuarioId = {
   handler : function(request, reply){
     usuario.findOne({'_id' : request.params._id}, function(err, Usuario){
       if(!err && Usuario){
-        return reply(Usuario);
+        return reply({usuario: Usuario, success:true});
       }else if(!err){
-        return reply(boom.notFound());
+        return reply({success:false});
       }else if(err){
-        return reply(boom.wrap(err, 'Usuario not found'));
+        return reply({success:false});
       }
     });
   }
@@ -25,11 +25,11 @@ exports.getUsuarioIdPersonal = {
   handler : function(request, reply){
     usuario.findOne({'IdPersonal' : request.params.IdPersonal}, function(err, Usuario){
       if(!err && Usuario){
-        return reply(Usuario);
+        return reply({usuario: Usuario, success:true});
       }else if(!err){
-        return reply(boom.notFound());
+        return reply({success:false});
       }else if(err){
-        return reply(boom.wrap(err, 'Usuario not found'));
+        return reply({success:false});
       }
     });
   }
@@ -38,11 +38,11 @@ exports.getUsuarioIdOrdenes = {
   handler : function(request, reply){
     usuario.findOne({'idOrdenes' : request.params.idOrdenes}, function(err, Usuario){
       if(!err && Usuario){
-        return reply(Usuario);
+        return reply({usuario: Usuario, success:true});
       }else if(!err){
-        return reply(boom.notFound());
+        return reply({success:false});
       }else if(err){
-        return reply(boom.wrap(err, 'Usuario not found'));
+        return reply({success:false});
       }
     });
   }
@@ -51,11 +51,11 @@ exports.getUsuarioName = {
   handler : function(request, reply){
     usuario.findOne({'nombre' : request.params.nombre}, function(err, Usuario){
       if(!err && Usuario){
-        return reply(Usuario);
+        return reply({usuario: Usuario, success:true});
       }else if(!err){
-        return reply(boom.notFound());
+        return reply({success:false});
       }else if(err){
-        return reply(boom.wrap(err, 'Usuario not found'));
+        return reply({success:false});
       }
     });
   }
@@ -75,9 +75,9 @@ exports.modifyUsuario = {
         }
       }, function(err){
         if(err){
-          return reply(boom.wrap(err, 'Usuario not found'));
+          return reply({success:false});
         }else{
-          return reply('updated succesfully');
+          return reply({success:true});
         }
       }
     );
@@ -87,12 +87,12 @@ exports.deleteUsuario = {
   handler: function(request, reply){
     usuario.findOne({'_id' : request.params._id}, function(err, Usuario){
       if(err){
-        return reply(boom.badRequest("Could not delete Usuario"));
+        return reply({success:false});
       }else if(!err && Usuario){
         Usuario.remove();
-        return reply('Usuario deleted succesfully');
+        return reply({success:true});
       }else if(!err){
-        return reply(boom.notFound());
+        return reply({success:false});
       }
     });
   }

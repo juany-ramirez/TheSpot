@@ -12,11 +12,11 @@ exports.getInsumoId = {
   handler : function(request, reply){
     insumo.findOne({'_id' : request.params._id}, function(err, Insumo){
       if(!err && Insumo){
-        return reply(Insumo);
+        return reply({insumo:Insumo, success:true});
       }else if(!err){
-        return reply(boom.notFound());
+        return reply({success:false});
       }else if(err){
-        return reply(boom.wrap(err, 'Insumo not found'));
+        return reply({success:false});
       }
     });
   }
@@ -25,11 +25,11 @@ exports.getInsumoName = {
   handler : function(request, reply){
     insumo.find({'nombre' : request.params.nombre}, function(err, Insumos){
       if(!err && Insumos){
-        return reply(Insumos);
+        return reply({insumo:Insumos, success:true});
       }else if(!err){
-        return reply(boom.notFound());
+        return reply({success:false});
       }else if(err){
-        return reply(boom.wrap(err, 'Insumos not found'));
+        return reply({success:false});
       }
     });
   }
@@ -38,11 +38,11 @@ exports.getInsumoProveedor = {
   handler : function(request, reply){
     insumo.find({'idProveedor' : request.params.idProveedor}, function(err, Insumos){
       if(!err && Insumos){
-        return reply(Insumos);
+        return reply({insumo:Insumos, success:true});
       }else if(!err){
-        return reply(boom.notFound());
+        return reply({success:false});
       }else if(err){
-        return reply(boom.wrap(err, 'Insumos not found'));
+        return reply({success:false});
       }
     });
   }
@@ -51,11 +51,11 @@ exports.getInsumoInventario = {
   handler : function(request, reply){
     insumo.find({'inventario' : request.params.inventario}, function(err, Insumos){
       if(!err && Insumos){
-        return reply(Insumos);
+        return reply({insumo:Insumos, success:true});
       }else if(!err){
-        return reply(boom.notFound());
+        return reply({success:false});
       }else if(err){
-        return reply(boom.wrap(err, 'Insumos not found'));
+        return reply({success:false});
       }
     });
   }
@@ -72,9 +72,9 @@ exports.modifyInsumo = {
         }
       }, function(err){
         if(err){
-          return reply(boom.wrap(err, 'Insumo not found'));
+          return reply({success:false});
         }else{
-          return reply('updated succesfully');
+          return reply({success:true});
         }
       }
     );
@@ -84,12 +84,12 @@ exports.deleteInsumo = {
   handler: function(request, reply){
     insumo.findOne({'_id' : request.params._id}, function(err, Insumo){
       if(err){
-        return reply(boom.badRequest("Could not delete insumo"));
+        return reply({success:false});
       }else if(!err && Insumo){
         Insumo.remove();
-        return reply('Insumo deleted succesfully');
+        return reply({success:true});
       }else if(!err){
-        return reply(boom.notFound());
+        return reply({success:false});
       }
     });
   }

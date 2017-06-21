@@ -41,7 +41,7 @@
     </ul>
     <div class="row">
         <div class="input-field col s6">
-          <input type="text" v-model="bebida.nombre" :disabled="loading"  id="Nombre">
+          <input type="text" placeholder="Nombre" v-model="bebida.nombre" :disabled="loading"  id="Nombre">
           <label for="Nombre">{{bebida.nombre}}</label>
         </div>
         <div class="input-field col s6">
@@ -120,6 +120,7 @@ export default {
       tabControl(idTab){
         if(idTab === 'test-swipe-1'){
           this.idModificar = '';
+          this.bebida= {};
           this.selectedTab= 'test-swipe-1';
           $("#Nombre").val('');
           $("#idProveedor").val('');
@@ -137,6 +138,7 @@ export default {
       startToModifyBebida(bebida){
         this.selectedTab= 'test-swipe-2';
         this.idModificar = bebida._id;
+        this.bebida = bebida;
         $('ul.tabs').tabs('select_tab', 'test-swipe-2');
         $("#Nombre").val(bebida.nombre);
         $("#idProveedor").val(bebida.idProveedor);
@@ -155,6 +157,7 @@ export default {
               this.getBebida();
               this.loading=false;
   						sweetAlert("Modificado con exito!", "Los cambios estan en la tabla", "success");
+              this.bebida= {};
               $("#Nombre").val('');
               $("#idProveedor").val('');
               $("#Tipo").val('');

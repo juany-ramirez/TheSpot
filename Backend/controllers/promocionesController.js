@@ -12,11 +12,11 @@ exports.getPromocionId = {
   handler : function(request, reply){
     promocion.findOne({'_id' : request.params._id}, function(err, Promocion){
       if(!err && Promocion){
-        return reply(Promocion);
+        return reply({promocion: Promocion,success:true});
       }else if(!err){
-        return reply(boom.notFound());
+        return reply({success:false});
       }else if(err){
-        return reply(boom.wrap(err, 'Promocion not found'));
+        return reply({success:false});
       }
     });
   }
@@ -25,11 +25,11 @@ exports.getPromocionProductos = {
   handler : function(request, reply){
     promocion.find({'idProductos' : request.params.idProductos}, function(err, Promocion){
       if(!err && Promocion){
-        return reply(Promocion);
+        return reply({promocion: Promocion,success:true});
       }else if(!err){
-        return reply(boom.notFound());
+        return reply({success:false});
       }else if(err){
-        return reply(boom.wrap(err, 'Promocion not found'));
+        return reply({success:false});
       }
     });
   }
@@ -38,11 +38,11 @@ exports.getPromocionDescuento = {
   handler : function(request, reply){
     promocion.find({'idProveedor' : request.params.descuento}, function(err, Promocion){
       if(!err && Promocion){
-        return reply(Promocion);
+        return reply({promocion: Promocion,success:true});
       }else if(!err){
-        return reply(boom.notFound());
+        return reply({success:false});
       }else if(err){
-        return reply(boom.wrap(err, 'Promocion not found'));
+        return reply({success:false});
       }
     });
   }
@@ -51,11 +51,11 @@ exports.getPromocionName = {
   handler : function(request, reply){
     promocion.find({'nombre' : request.params.nombre}, function(err, Promocion){
       if(!err && Promocion){
-        return reply(Promocion);
+        return reply({promocion: Promocion,success:true});
       }else if(!err){
-        return reply(boom.notFound());
+        return reply({success:false});
       }else if(err){
-        return reply(boom.wrap(err, 'Promocion not found'));
+        return reply({success:false});
       }
     });
   }
@@ -64,11 +64,11 @@ exports.getPromocionHora_Inicio = {
   handler : function(request, reply){
     promocion.find({'hora_inicio' : request.params.hora_inicio}, function(err, Promocion){
       if(!err && Promocion){
-        return reply(Promocion);
+        return reply({promocion: Promocion,success:true});
       }else if(!err){
-        return reply(boom.notFound());
+        return reply({success:false});
       }else if(err){
-        return reply(boom.wrap(err, 'Promocion not found'));
+        return reply({success:false});
       }
     });
   }
@@ -77,11 +77,11 @@ exports.getPromocionHora_Final = {
   handler : function(request, reply){
     promocion.find({'hora_final' : request.params.hora_final}, function(err, Promocion){
       if(!err && Promocion){
-        return reply(Promocion);
+        return reply({promocion: Promocion,success:true});
       }else if(!err){
-        return reply(boom.notFound());
+        return reply({success:false});
       }else if(err){
-        return reply(boom.wrap(err, 'Promocion not found'));
+        return reply({success:false});
       }
     });
   }
@@ -102,9 +102,9 @@ exports.modifyPromocion = {
         }
       }, function(err){
         if(err){
-          return reply(boom.wrap(err, 'Promocion not found'));
+          return reply({success:false});
         }else{
-          return reply('updated succesfully');
+          return reply({success:true});
         }
       }
     );
@@ -114,12 +114,12 @@ exports.deletePromocion = {
   handler: function(request, reply){
     promocion.findOne({'_id' : request.params._id}, function(err, Promocion){
       if(err){
-        return reply(boom.badRequest("Could not delete promocion"));
+        return reply({success:false});
       }else if(!err && Promocion){
         Promocion.remove();
-        return reply('Promocion deleted succesfully');
+        return reply({success:true});
       }else if(!err){
-        return reply(boom.notFound());
+        return reply({success:false});
       }
     });
   }
