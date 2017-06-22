@@ -1,5 +1,6 @@
 var bebida = require('../schemas/bebida.js');
 var mongoose = require('mongoose');
+var boom = require('boom');
 
 exports.getBebidas = {
   auth: {
@@ -21,11 +22,11 @@ exports.getBebidaId = {
   handler : function(request, reply){
     bebida.findOne({'_id' : request.params._id}, function(err, Bebida){
       if(!err && Bebida){
-        return reply(Bebida);
+        return reply({bebida: Bebida, success:true});
       }else if(!err){
-        return reply(boom.notFound());
+        return reply({success:false});
       }else if(err){
-        return reply(boom.wrap(err, 'Bebida not found'));
+        return reply({success:false});
       }
     });
   }
@@ -39,11 +40,11 @@ exports.getBebidaName = {
   handler : function(request, reply){
     bebida.find({'nombre' : request.params.nombre}, function(err, Bebidas){
       if(!err && Bebidas){
-        return reply(Bebidas);
+        return reply({bebida: Bebidas, success:true});
       }else if(!err){
-        return reply(boom.notFound());
+        return reply({success:false});
       }else if(err){
-        return reply(boom.wrap(err, 'Bebidas not found'));
+        return reply({success:false});
       }
     });
   }
@@ -57,11 +58,11 @@ exports.getBebidaProveedor = {
   handler : function(request, reply){
     bebida.find({'idProveedor' : request.params.idProveedor}, function(err, Bebidas){
       if(!err && Bebidas){
-        return reply(Bebidas);
+        return reply({bebida: Bebidas, success:true});
       }else if(!err){
-        return reply(boom.notFound());
+        return reply({success:false});
       }else if(err){
-        return reply(boom.wrap(err, 'Bebidas not found'));
+        return reply({success:false});
       }
     });
   }
@@ -75,11 +76,11 @@ exports.getBebidaTipo = {
   handler : function(request, reply){
     bebida.find({'tipo' : request.params.tipo}, function(err, Bebidas){
       if(!err && Bebidas){
-        return reply(Bebidas);
+        return reply({bebida: Bebidas, success:true});
       }else if(!err){
-        return reply(boom.notFound());
+        return reply({success:false});
       }else if(err){
-        return reply(boom.wrap(err, 'Bebidas not found'));
+        return reply({success:false});
       }
     });
   }
@@ -91,6 +92,7 @@ exports.modifyBebida = {
     scope: ['admin', 'gerente']
   },
   handler: function(request, reply){
+    console.log(request.payload);
     bebida.update(
       {'_id': request.params._id},
       {$set:
@@ -103,9 +105,9 @@ exports.modifyBebida = {
         }
       }, function(err){
         if(err){
-          return reply(boom.wrap(err, 'Bebida not found'));
+          return reply({success:false});
         }else{
-          return reply('updated succesfully');
+          return reply({success:true});
         }
       }
     );
@@ -120,12 +122,12 @@ exports.deleteBebida = {
   handler: function(request, reply){
     bebida.findOne({'_id' : request.params._id}, function(err, Bebida){
       if(err){
-        return reply(boom.badRequest("Could not delete bebida"));
+        return reply({success:false});
       }else if(!err && Bebida){
         Bebida.remove();
-        return reply('Bebida deleted succesfully');
+        return reply({success:true});
       }else if(!err){
-        return reply(boom.notFound());
+        return reply({success:false});
       }
     });
   }
@@ -152,7 +154,7 @@ exports.createBebida = {
       }else{
         return reply({
           success: false
-        })
+        });
       }
     });
   }

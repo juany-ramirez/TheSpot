@@ -1,9 +1,65 @@
 <template>
   <div class="container">
+    <div class="contenedorCliente">
+        <br><br>
+        <div id="cuadroMesa" class="col s4 z-depth-5 -lightblue" >
+          <br><br>
+          <span id="tituloMesa"> <i class="material-icons">shopping_cart</i> Mi orden</span>
+          <hr>
+          <p>
+            <div class="orderdetail -white">
+              <h4>Detalles de Orden</h4>
+              <p>Ingrese Codigo QR de la mesa</p>
+              <span>img</span>
+              <label class="custom-file-upload btn-floating -red">
+                  <i class="material-icons right">camera_alt</i>
+                  <input type="file" accept="image/*" capture="camera"/>
+                  <img src="" alt="">
+              </label>
+              <div class="row">
+
+                 <div class="col s6">
+                   <ul class="collapsible" data-collapsible="accordion">
+                    <li>
+                      <div class="collapsible-header active"><i class="material-icons">whatshot</i>Promociones</div>
+                      <div class="collapsible-body">
+                        <ul class="collection">
+                          <li class="collection-item dismissable"><div>Promocion - 100lps<a href="#!" class="secondary-content"><i class="material-icons">skip_next</i></a></div></li>
+                          <li class="collection-item dismissable"><div>Promocion - 100lps<a href="#!" class="secondary-content"><i class="material-icons">skip_next</i></a></div></li>
+                        </ul>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="collapsible-header"><i class="material-icons">local_bar</i>Productos</div>
+                      <div class="collapsible-body">
+                        <ul class="collection">
+                          <li class="collection-item dismissable"><div>Producto - 100lps<a href="#!" class="secondary-content"><i class="material-icons">skip_next</i></a></div></li>
+                          <li class="collection-item dismissable"><div>Producto - 100lps<a href="#!" class="secondary-content"><i class="material-icons">skip_next</i></a></div></li>
+                        </ul>
+                      </div>
+                    </li>
+                  </ul>
+                 </div>
+                 <div class="col s6">
+                   <ul class="collection">
+                     <li class="collection-headerCliente "><h4>Orden</h4></li>
+                     <li class="collection-item dismissable"><div>Combo<a href="#!" class="secondary-content"><i class="material-icons">delete</i></a></div></li>
+                     <li class="collection-item dismissable"><div>Combo<a href="#!" class="secondary-content"><i class="material-icons">delete</i></a></div></li>
+                   </ul>
+                 </div>
+               </div>
+            </div>
+            <a id="btnCliente" class="col s12 waves-effect waves-green btn-flat btn-large -blue">Crear Orden</a>
+
+          </p>
+          <hr>
+          <br><br>
+        </div>
+        <br><br><br><br>
+    </div>
     <br>
     <ul id="tabs-swipe-demo" class="tabs z-depth-6 -red">
-    <li class="tab col s6"><a class="active" href="#test-swipe-1"> MESAS </a></li>
-    <li class="tab col s6"><a href="#test-swipe-2"> ORDENES </a></li>
+      <li class="tab col s6"><a class="active" href="#test-swipe-1"> MESAS </a></li>
     </ul>
     <div id="test-swipe-1" >
       <br>
@@ -73,41 +129,61 @@
 
       </div><br><br><br><br>
     </div>
-    <div id="test-swipe-2">
-      <br>
-      <div class="row">
-        <div id="cuadroMesa" class="col s4 z-depth-5 -lightblue" >
-          <br><br>
-          <span id="tituloMesa"> <i class="material-icons">shopping_cart</i> ORDEN 1</span>
-          <p>
-            <a class="btn-floating waves-effect waves-light btn grey grey darken-3"><i class="material-icons">receipt</i></a>
-          </p>
-          <br><br>
-        </div>
-      </div>
-    </div><br><br><br><br>
-    <br>
-
   </div>
 </template>
 
 <script>
 export default {
   name: 'ordenes',
+  data(){
+    return{
+      mesas:[],
+      ordenes:[]
+    }
+  },
+  methods:{
+
+  },
   mounted() {
-    (function($){
-  $(function(){
-
-    $('.button-collapse').sideNav();
-    $('.parallax').parallax();
-
-  }); // end of document ready
-})(jQuery); // end of jQuery name space
+    $('ul.tabs').tabs();
+    $('.modal').modal();
+    $('.collapsible').collapsible();
   }
 }
 </script>
 
 <style scoped>
+  .contenedorCliente{
+    text-align: center;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 17px;
+  }
+  input[type="file"] {
+    display: none;
+  }
+  .custom-file-upload {
+      display: inline-block;
+      cursor: pointer;
+      align-items: center;
+  }
+  #btnCliente{
+      font-family: 'Cormorant SC', serif!important;
+      font-weight: bold;
+      font-size: 20px;
+      padding-left: 15%;
+      padding-right: 15%;
+  }
+  .orderdetail h4{
+    font-family: 'Lobster Two', cursive;
+    color: #06152F;
+    background-color: #262626;
+    color: #F4F0EA;
+  }
+  .orderdetail .collection-item{
+      text-align: left;
+      font-family: 'Source Sans Pro', sans-serif;
+      font-size: 20px;
+  }
   .modal-content h4{
     font-family: 'Lobster Two', cursive;
     color: #06152F;
@@ -133,6 +209,15 @@ export default {
     font-family: 'Oswald', sans-serif;
     font-size: 22px;
     background-color: #06152F;
+    color: #F4F0EA;
+  }
+  .collection-headerCliente{
+    background-color: #FF0B00 !important; 
+  }
+  .collapsible-header{
+    font-family: 'Lobster Two', cursive;
+    font-size: 30px;
+    background-color: #262626;
     color: #F4F0EA;
   }
   #test-swipe-1 .row{
@@ -163,6 +248,11 @@ export default {
     font-family: 'Cormorant SC', serif!important;
     font-weight: bold;
     font-size: 35px;
+  }
+  .contenedorCliente #tituloMesa{
+    font-family: 'Cormorant SC', serif!important;
+    font-weight: bold;
+    font-size: 50px;
   }
   .tabs .tab a.active {
     color: #F4F0EA;

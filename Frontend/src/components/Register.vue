@@ -6,7 +6,7 @@
         <div class="section"></div>
         <div class="container">
           <div class="z-depth-1 grey lighten-4 row" style="display: inline-block; width:500px;padding: 32px 50px 0px 50px; border: 1px solid #EEE;">
-            <form class="col s12" method="post">
+            <form class="col s12">
               <div class='row'>
                 <div class='col s12'>
                   <h4>Ingresar Datos</h4>
@@ -37,14 +37,14 @@
               <div class='row'>
                 <div class='input-field col s12'>
                   <i class="material-icons prefix">vpn_key</i>
-                  <input class='validate' type='password' id='password' />
+                  <input class='validate' v-model="pass1"type='password' id='password' />
                   <label for='password'>Contraseña</label>
                 </div>
               </div>
               <div class='row'>
                 <div class='input-field col s12'>
                   <i class="material-icons prefix">vpn_key</i>
-                  <input class='validate' type='password' id='password2' />
+                  <input class='validate' v-model="pass2" type='password' id='password2' />
                   <label for='password2'> Reescribir contraseña</label>
                 </div>
               </div>
@@ -53,10 +53,11 @@
                 <input type="checkbox" id="test6" />
                 <label for="test6">Acepto
                   <a class='hrefStyle' href="#modalCondiciones"><b>Condiciones de uso</b></a>
+
                 </label>
                <!-- Modal Structure -->
                <div id="modalCondiciones" class="modal">
-                 <div class="modal-content -blue">
+                 <div class="modal-content -white">
                    <h4>Condiciones de uso</h4>
                    <p>1. Introducción<br>
 
@@ -92,14 +93,14 @@
                     <br><br>
                     </p>
                  </div>
-                 <div class="modal-footer">
-                   <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">OK</a>
+                 <div class="modal-footer -lightblue">
+                   <a class="modal-action modal-close waves-effect waves-green btn-flat -blue">OK</a>
                  </div>
                </div>
-              </p><br>
+              <br>
               <center>
-                <div class='row'>
-                  <button type='submit' name='btn_registrarse' class='col s12 btn btn-large waves-effect -blue'>Registrarse</button>
+                <div class="row">
+                  <a class="col s12 btn-large waves-effect -blue waves-light btn" v-on:click="newUsuario" :disabled="loading" >Registrarse</a>
                 </div>
               </center>
             </form>
@@ -114,6 +115,25 @@
 <script>
 export default {
   name: 'register',
+  data(){
+    return{
+      pass1: '',
+      pass2: '',
+      loading: false
+    }
+  },
+  methods:{
+    newUsuario(){
+      this.loading=true;
+      if(this.pass1 === this.pass2){
+        this.loading=false;
+      }else{
+        this.loading=false;
+        sweetAlert("Oops...", "La contraseña no es la misma", "error");
+      }
+			}
+
+  },
   mounted(){
      $('.modal').modal();
   }
@@ -126,6 +146,11 @@ export default {
     font-family: 'Source Sans Pro', sans-serif;
 
   }
+  .hrefStyle:hover{
+    color: #06152F !important;
+    text-decoration: underline;
+  }
+
   .container{
     color: black !important;
   }

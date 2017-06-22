@@ -1,5 +1,6 @@
 var mesa = require('../schemas/mesa.js');
 var mongoose = require('mongoose');
+var boom = require('boom');
 
 exports.getMesas = {
   auth: {
@@ -21,11 +22,11 @@ exports.getMesaId = {
   handler : function(request, reply){
     mesa.findOne({'_id' : request.params._id}, function(err, Mesa){
       if(!err && Mesa){
-        return reply(Mesa);
+        return reply({mesa:Mesas, success:true});
       }else if(!err){
-        return reply(boom.notFound());
+        return reply({ success:false});
       }else if(err){
-        return reply(boom.wrap(err, 'Mesa not found'));
+        return reply({ success:false});
       }
     });
   }
@@ -39,11 +40,11 @@ exports.getMesaName = {
   handler : function(request, reply){
     mesa.find({'nombre' : request.params.nombre}, function(err, Mesas){
       if(!err && Mesas){
-        return reply(Mesas);
+        return reply({mesa:Mesas, success:true});
       }else if(!err){
-        return reply(boom.notFound());
+        return reply({ success:false});
       }else if(err){
-        return reply(boom.wrap(err, 'Mesas not found'));
+        return reply({ success:false});
       }
     });
   }
@@ -57,11 +58,11 @@ exports.getMesaNumero = {
   handler : function(request, reply){
     mesa.find({'numero' : request.params.numero}, function(err, Mesas){
       if(!err && Mesas){
-        return reply(Mesas);
+        return reply({mesa:Mesas, success:true});
       }else if(!err){
-        return reply(boom.notFound());
+        return reply({ success:false});
       }else if(err){
-        return reply(boom.wrap(err, 'Mesas not found'));
+        return reply({ success:false});
       }
     });
   }
@@ -75,11 +76,11 @@ exports.getMesaIdOrdenes = {
   handler : function(request, reply){
     mesa.find({'IdOrden' : request.params.IdOrden}, function(err, Mesas){
       if(!err && Mesas){
-        return reply(Mesas);
+        return reply({mesa:Mesas, success:true});
       }else if(!err){
-        return reply(boom.notFound());
+        return reply({ success:false});
       }else if(err){
-        return reply(boom.wrap(err, 'Mesas not found'));
+        return reply({ success:false});
       }
     });
   }
@@ -101,9 +102,9 @@ exports.modifyMesa = {
         }
       }, function(err){
         if(err){
-          return reply(boom.wrap(err, 'mesa not found'));
+          return reply({ success:false});
         }else{
-          return reply('updated succesfully');
+          return reply({ success:true});
         }
       }
     );
@@ -118,12 +119,12 @@ exports.deleteMesa = {
   handler: function(request, reply){
     mesa.findOne({'_id' : request.params._id}, function(err, mesa){
       if(err){
-        return reply(boom.badRequest("Could not delete mesa"));
+        return reply({ success:false});
       }else if(!err && Mesa){
         Mesa.remove();
-        return reply('Mesa deleted succesfully');
+        return reply({ success:true});
       }else if(!err){
-        return reply(boom.notFound());
+        return reply({ success:false});
       }
     });
   }

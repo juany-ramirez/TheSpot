@@ -1,5 +1,6 @@
 var producto_elaborado = require('../schemas/producto_elaborado.js');
 var mongoose = require('mongoose');
+var boom = require('boom');
 
 exports.getProductos_elaborados = {
   auth: {
@@ -21,11 +22,11 @@ exports.getProductos_elaboradoId = {
   handler : function(request, reply){
     producto_elaborado.findOne({'_id' : request.params._id}, function(err, Producto_elaborado){
       if(!err && Producto_elaborado){
-        return reply(Producto_elaborado);
+        return reply({producto_elaborado: Producto_elaborado,success:true});
       }else if(!err){
-        return reply(boom.notFound());
+        return reply({success:false});
       }else if(err){
-        return reply(boom.wrap(err, 'Producto_elaborado not found'));
+        return reply({success:false});
       }
     });
   }
@@ -39,11 +40,11 @@ exports.getIdProducto_Elaborado_Detail = {
   handler : function(request, reply){
     producto_elaborado.find({'idProducto_Elaborado_Detail' : request.params.idProducto_Elaborado_Detail}, function(err, Productos_elaborados){
       if(!err && Productos_elaborados){
-        return reply(Productos_elaborados);
+        return reply({producto_elaborado: Productos_elaborados,success:true});
       }else if(!err){
-        return reply(boom.notFound());
+        return reply({success:false});
       }else if(err){
-        return reply(boom.wrap(err, 'Producto_elaborado not found'));
+        return reply({success:false});
       }
     });
   }
@@ -57,11 +58,11 @@ exports.getIdProducto_Elaborado_Tipo = {
   handler : function(request, reply){
     producto_elaborado.find({'tipo' : request.params.idProveedor}, function(err, Productos_elaborados){
       if(!err && Productos_elaborados){
-        return reply(Productos_elaborados);
+        return reply({producto_elaborado: Productos_elaborados,success:true});
       }else if(!err){
-        return reply(boom.notFound());
+        return reply({success:false});
       }else if(err){
-        return reply(boom.wrap(err, 'Productos_elaborados not found'));
+        return reply({success:false});
       }
     });
   }
@@ -83,9 +84,9 @@ exports.modifyProductos_elaborado = {
         }
       }, function(err){
         if(err){
-          return reply(boom.wrap(err, 'Producto_elaborado not found'));
+          return reply({success:false});
         }else{
-          return reply('updated succesfully');
+          return reply({success:true});
         }
       }
     );
@@ -100,12 +101,12 @@ exports.deleteProducto_elaborado = {
   handler: function(request, reply){
     producto_elaborado.findOne({'_id' : request.params._id}, function(err, Producto_elaborado){
       if(err){
-        return reply(boom.badRequest("Could not delete bebida"));
+        return reply({success:false});
       }else if(!err && Producto_elaborado){
         Producto_elaborado.remove();
-        return reply('Producto_elaborado deleted succesfully');
+        return reply({success:true});
       }else if(!err){
-        return reply(boom.notFound());
+        return reply({success:false});
       }
     });
   }
