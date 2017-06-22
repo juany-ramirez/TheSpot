@@ -40,31 +40,51 @@
       <li class="tab col s3"><a v-on:click="tabControl('test-swipe-2')" href="#test-swipe-2">Modificar</a></li>
     </ul>
     <div class="row">
-        <div class="input-field col s6">
-          <input type="text" v-model="bebida.nombre" :disabled="loading"  id="Nombre">
-          <label for="Nombre">{{bebida.nombre}}</label>
+        <div class="input-field col s12">
+          <input v-on:input="bebida.nombre = $event.target.value" type="text" v-model="bebida.nombre" :disabled="loading"  id="Nombre">
+          <label for="Nombre">Nombre</label>
         </div>
         <div class="input-field col s6">
-          <input v-model="bebida.idProveedor" :disabled="loading" id="idProveedor" type="text" >
-          <label for="idProveedor">Id Proveedor</label>
-        </div>
-        <div class="input-field col s6">
-          <input v-model="bebida.tipo" :disabled="loading"  id="Tipo" type="text" class="validate">
+          <input v-on:input="bebida.tipo = $event.target.value" v-model="bebida.tipo" :disabled="loading"  id="Tipo" type="text" class="validate">
           <label for="Tipo">Tipo</label>
         </div>
         <div class="input-field col s6">
-          <input type="number" v-model="bebida.inventario" :disabled="loading"  id="Inventario">
+          <input v-on:input="bebida.inventario = $event.target.value" type="number" v-model="bebida.inventario" :disabled="loading"  id="Inventario">
           <label for="Inventario">Inventario</label>
         </div>
         <div class="row">
           <form class="col s12">
             <div class="row">
               <div class="input-field col s12">
-                <textarea v-model="bebida.descripcion" :disabled="loading"  id="Descripcion" type="text"  class="materialize-textarea"></textarea>
+                <textarea v-on:input="bebida.descripcion = $event.target.value" v-model="bebida.descripcion" :disabled="loading"  id="Descripcion" type="text"  class="materialize-textarea"></textarea>
                 <label for="Descripcion">Descripción</label>
               </div>
             </div>
           </form>
+        </div>
+        <div class="row -white" id="contenedorTablaExterna">
+          <div class="col s6" >
+            <h5>Seleccionar ID Proveedor:</h5><p>(hacer click en el nombre deseado)</p>
+            <hr>
+            <ul v-for="proveedor in proveedores">
+              <li><i class="material-icons left">pages</i>{{proveedor.nombre}}
+                <a v-on:click="newProveedor(proveedor._id)" class="btn-floating btn-small waves-effect waves-light black secondary-content">
+                  <i class="material-icons">skip_next</i>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div id="importance"class="input-field col s6 center">
+            <br>
+              <label  id="idProveedor">
+                <h4>
+                  <a v-on:click="borrarProveedor()" class="waves-effect waves-light">
+                    <i class="material-icons">delete</i>
+                  </a> {{idProv}}  {{nombreProv}}
+                </h4>
+              </label>
+
+          </div>
         </div>
       </div>
   	  <div id="test-swipe-1" class="col s12">
@@ -73,6 +93,9 @@
         </a>
       </div>
   	  <div id="test-swipe-2" class="col s12">
+        <div class="card">
+            Atención: Los cambios realizados no se guardan hasta que haga click en el botón de update.
+        </div>
 				<a class="waves-effect waves-light btn-large" v-on:click="modifyBebida" :disabled="loading" id="boton">
 					<i class="material-icons left">update</i>Update
         </a>
@@ -89,8 +112,23 @@ export default {
 			bebida:{},
 			loading: false,
       idModificar: '',
-      selectedTab: 'test-swipe-1'
+      idProv: 'N/A',
+      nombreProv: '',
+      selectedTab: 'test-swipe-1',
+      proveedor:{},
+      proveedores: []
     }
+  },
+  watch: {
+    idProv: function (val) {
+      if(val!='N/A'){
+        this.nombreProv = '';
+      }else {
+        this.$http.get('http://localhost:8000/proveedor/searchbyid/{_id}').then((response)=>{
+					this.nombreProv = response.body.proveedor.nombre;
+				});
+      }
+    },
   },
   methods: {
       getBebida(){
@@ -98,18 +136,20 @@ export default {
 					this.bebidas=response.body;
 				});
 			},
+      newProveedor(proveedor_id){
+        this.idProv = proveedor_id;
+      },
+      borrarProveedor(){
+        this.idProv = 'N/A';
+      },
 			createBebida(){
 				this.loading=true;
-
+        this.bebida.idProveedor = this.idProv;
 				this.$http.post('http://localhost:8000/bebidas/create',this.bebida)
 				.then((response)=>{
 					this.loading=false;
 					if(response.body.success){
-            $("#Nombre").val('');
-            $("#idProveedor").val('');
-            $("#Tipo").val('');
-            $("#Inventario").val('');
-            $("#Descripcion").val('');
+            this.bebida= {};
 						sweetAlert("Creado con exito!", "Los cambios estan en la tabla", "success");
 						this.getBebida();
 					}else{
@@ -121,12 +161,7 @@ export default {
         if(idTab === 'test-swipe-1'){
           this.idModificar = '';
           this.selectedTab= 'test-swipe-1';
-          $("#Nombre").val('');
-          $("#idProveedor").val('');
-          $("#Tipo").val('');
-          $("#Inventario").val('');
-          $("#Descripcion").val('');
-          Materialize.updateTextFields();
+          this.bebida= {};
         }else{
           if(this.idModificar === ''){
             swal("Recuerda!",
@@ -137,29 +172,23 @@ export default {
       startToModifyBebida(bebida){
         this.selectedTab= 'test-swipe-2';
         this.idModificar = bebida._id;
+        this.bebida = bebida;
+        this.idProv = bebida.idProveedor;
         $('ul.tabs').tabs('select_tab', 'test-swipe-2');
-        $("#Nombre").val(bebida.nombre);
-        $("#idProveedor").val(bebida.idProveedor);
-        $("#Tipo").val(bebida.tipo);
-        $("#Inventario").val(bebida.inventario);
-        $("#Descripcion").val(bebida.descripcion);
         Materialize.updateTextFields();
 			},
       modifyBebida(){
         this.loading=true;
         if(this.idModificar!=''){
           Materialize.updateTextFields();
+          this.bebida.idProveedor = this.idProv;
           this.$http.put('http://localhost:8000/bebidas/update/'+this.idModificar,this.bebida)
   				.then((response)=>{
   					if(response.body.success){
               this.getBebida();
               this.loading=false;
   						sweetAlert("Modificado con exito!", "Los cambios estan en la tabla", "success");
-              $("#Nombre").val('');
-              $("#idProveedor").val('');
-              $("#Tipo").val('');
-              $("#Inventario").val('');
-              $("#Descripcion").val('');
+              this.bebida= {};
   					}else{
   						sweetAlert("Oops...", "Error al modificar", "error");
               this.loading=false;
@@ -168,21 +197,27 @@ export default {
         }
       },
       deleteBebida(idBebida){
-					this.loading=true;
-					this.$http.delete('http://localhost:8000/bebidas/delete/'+idBebida)
-						.then((response)=>{
-						this.loading=false;
-						if(response.body.success){
+          this.loading=true;
+          this.$http.delete('http://localhost:8000/bebidas/delete/'+idBebida)
+            .then((response)=>{
+            this.loading=false;
+            if(response.body.success){
               this.getBebida();
-							sweetAlert("Deleted!", "Se ha eliminado el Libro", "success");
-						}else{
+              sweetAlert("Deleted!", "Los cambios estan en la tabla", "success");
+            }else{
               sweetAlert("Oops...", "Error al eliminar", "error");
-						}
-					});
-			}
+            }
+          });
+			},
+      getProveedores(){
+        this.$http.get('http://localhost:8000/proveedores').then((response)=>{
+					this.proveedores=response.body;
+				});
+      }
   },
   beforeMount(){
     this.getBebida();
+    this.getProveedores();
 	},
   mounted() {
       $('ul.tabs').tabs();
@@ -193,6 +228,27 @@ export default {
 </script>
 
 <style scoped>
+  #importance{
+    color: black !important;
+    opacity: 0.7;
+    text-align: center;
+    font-family: 'Roboto', sans-serif !important;
+    font-weight: lighter;
+  }
+  .collection-item{
+    color: black;
+  }
+  .card{
+    padding: 10px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: lighter;
+    background-color: black;
+    font-size: 15px;
+    color: white;
+  }
+  #contenedorTablaExterna{
+    border-radius: 5px;
+  }
   td{
     font-family: 'Source Sans Pro', sans-serif;
   }
@@ -209,7 +265,7 @@ export default {
     vertical-align:middle;
   }
   .table thead{
-		font-family: 'Josefin Slab', serif;
+		font-family: 'Roboto', sans-serif;
 		font-weight: bold;
 		font-size: 30px;
 	}
@@ -262,8 +318,9 @@ export default {
     background-color: red;
   }
   h4{
-    font-family: 'Playfair Display';
-    text-align: left;
+    text-align: center;
+    color: black !important;
+
   }
   #root{
     font-family: 'Playfair Display';
