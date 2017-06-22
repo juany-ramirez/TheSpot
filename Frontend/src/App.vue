@@ -113,8 +113,8 @@
       // $('.tap-target').tapTarget('close')
     }
   }
-</script>
 
+</script>
 <style scoped>
   .-white{
     background-color: #F4F0EA;

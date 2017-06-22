@@ -3,12 +3,22 @@ var mongoose = require('mongoose');
 var boom = require('boom');
 
 exports.getUsuarios = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin', 'gerente']
+  },
   handler: function(request, reply){
     var usuarios = usuario.find({});
     reply(usuarios);
   }
 }
 exports.getUsuarioId = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin', 'gerente']
+  },
   handler : function(request, reply){
     usuario.findOne({'_id' : request.params._id}, function(err, Usuario){
       if(!err && Usuario){
@@ -22,6 +32,11 @@ exports.getUsuarioId = {
   }
 }
 exports.getUsuarioIdPersonal = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin', 'gerente']
+  },
   handler : function(request, reply){
     usuario.findOne({'IdPersonal' : request.params.IdPersonal}, function(err, Usuario){
       if(!err && Usuario){
@@ -35,6 +50,11 @@ exports.getUsuarioIdPersonal = {
   }
 }
 exports.getUsuarioIdOrdenes = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin', 'gerente']
+  },
   handler : function(request, reply){
     usuario.findOne({'idOrdenes' : request.params.idOrdenes}, function(err, Usuario){
       if(!err && Usuario){
@@ -48,6 +68,11 @@ exports.getUsuarioIdOrdenes = {
   }
 }
 exports.getUsuarioName = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin', 'gerente']
+  },
   handler : function(request, reply){
     usuario.findOne({'nombre' : request.params.nombre}, function(err, Usuario){
       if(!err && Usuario){
@@ -61,6 +86,11 @@ exports.getUsuarioName = {
   }
 }
 exports.modifyUsuario = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin', 'gerente', 'cliente']
+  },
   handler: function(request, reply){
     usuario.update(
       {'_id': request.params._id},
@@ -71,7 +101,8 @@ exports.modifyUsuario = {
           usuario : request.payload.usuario,
           contrasena : request.payload.contraseña,
           nombre : request.payload.nombre,
-          telefono : request.payload.telefono
+          telefono : request.payload.telefono,
+          scope: request.payload.scope
         }
       }, function(err){
         if(err){
@@ -84,6 +115,11 @@ exports.modifyUsuario = {
   }
 }
 exports.deleteUsuario = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin', 'gerente']
+  },
   handler: function(request, reply){
     usuario.findOne({'_id' : request.params._id}, function(err, Usuario){
       if(err){
@@ -98,6 +134,11 @@ exports.deleteUsuario = {
   }
 }
 exports.createUsuario = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin', 'gerente']
+  },
   handler: function(request, reply){
     var newUsuario = new usuario({
       IdPersonal : request.payload.IdPersonal,
@@ -105,7 +146,8 @@ exports.createUsuario = {
       usuario : request.payload.usuario,
       contrasena : request.payload.contraseña,
       nombre : request.payload.nombre,
-      telefono : request.payload.telefono
+      telefono : request.payload.telefono,
+      scope: request.payload.scope
     });
     newUsuario.save(function(err){
       if(!err){

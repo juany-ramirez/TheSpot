@@ -3,12 +3,22 @@ var mongoose = require('mongoose');
 var boom = require('boom');
 
 exports.getBebidas = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin', 'gerente', 'personal']
+  },
   handler: function(request, reply){
     var bebidas = bebida.find({});
     reply(bebidas);
   }
 }
 exports.getBebidaId = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin', 'gerente', 'personal']
+  },
   handler : function(request, reply){
     bebida.findOne({'_id' : request.params._id}, function(err, Bebida){
       if(!err && Bebida){
@@ -22,6 +32,11 @@ exports.getBebidaId = {
   }
 }
 exports.getBebidaName = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin', 'gerente', 'personal', 'cliente']
+  },
   handler : function(request, reply){
     bebida.find({'nombre' : request.params.nombre}, function(err, Bebidas){
       if(!err && Bebidas){
@@ -35,6 +50,11 @@ exports.getBebidaName = {
   }
 }
 exports.getBebidaProveedor = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin', 'gerente']
+  },
   handler : function(request, reply){
     bebida.find({'idProveedor' : request.params.idProveedor}, function(err, Bebidas){
       if(!err && Bebidas){
@@ -48,6 +68,11 @@ exports.getBebidaProveedor = {
   }
 }
 exports.getBebidaTipo = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin', 'gerente', 'personal', 'cliente']
+  },
   handler : function(request, reply){
     bebida.find({'tipo' : request.params.tipo}, function(err, Bebidas){
       if(!err && Bebidas){
@@ -61,6 +86,11 @@ exports.getBebidaTipo = {
   }
 }
 exports.modifyBebida = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin', 'gerente']
+  },
   handler: function(request, reply){
     console.log(request.payload);
     bebida.update(
@@ -84,6 +114,11 @@ exports.modifyBebida = {
   }
 }
 exports.deleteBebida = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin', 'gerente']
+  },
   handler: function(request, reply){
     bebida.findOne({'_id' : request.params._id}, function(err, Bebida){
       if(err){
@@ -98,6 +133,11 @@ exports.deleteBebida = {
   }
 }
 exports.createBebida = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin', 'gerente']
+  },
   handler: function(request, reply){
     var newBebida = new bebida({
       nombre : request.payload.nombre,

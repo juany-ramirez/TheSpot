@@ -3,12 +3,22 @@ var mongoose = require('mongoose');
 var boom = require('boom');
 
 exports.getFacturas = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin', 'gerente']
+  },
   handler: function(request, reply){
     var facturas = factura.find({});
     reply(facturas);
   }
 }
 exports.getFacturaId = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin', 'gerente', 'personal', 'cliente']
+  },
   handler : function(request, reply){
     factura.findOne({'_id' : request.params._id}, function(err, Factura){
       if(!err && Factura){
@@ -22,6 +32,11 @@ exports.getFacturaId = {
   }
 }
 exports.getFacturaName = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin', 'gerente', 'personal', 'cliente']
+  },
   handler : function(request, reply){
     factura.find({'nombre' : request.params.nombre}, function(err, Facturas){
       if(!err && Facturas){
@@ -35,6 +50,11 @@ exports.getFacturaName = {
   }
 }
 exports.getFacturaIdOrden = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin', 'gerente', 'personal']
+  },
   handler : function(request, reply){
     factura.find({'idOrden' : request.params.idOrden}, function(err, Facturas){
       if(!err && Facturas){
@@ -48,6 +68,11 @@ exports.getFacturaIdOrden = {
   }
 }
 exports.modifyFactura = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin', 'gerente', 'personal']
+  },
   handler: function(request, reply){
     factura.update(
       {'_id': request.params._id},
@@ -72,6 +97,11 @@ exports.modifyFactura = {
   }
 }
 exports.deleteFactura = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin', 'gerente']
+  },
   handler: function(request, reply){
     factura.findOne({'_id' : request.params._id}, function(err, Facturas){
       if(err){
@@ -86,6 +116,11 @@ exports.deleteFactura = {
   }
 }
 exports.createFactura = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin', 'gerente', 'personal']
+  },
   handler: function(request, reply){
     var newFactura = new factura({
       idOrden : request.payload.idOrden,

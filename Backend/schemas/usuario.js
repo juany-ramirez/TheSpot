@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var uniqueValidator = require('mongoose-unique-validator');
 
 var UsuarioSchema = new mongoose.Schema({
   IdPersonal: String,
@@ -6,7 +7,9 @@ var UsuarioSchema = new mongoose.Schema({
   usuario : String,
   contrasena : String,
   nombre : String,
-  telefono : String
+  telefono : String,
+  scope: [String]
 });
 
+UserSchema.plugin(uniqueValidator);
 module.exports = mongoose.model('usuario', UsuarioSchema);

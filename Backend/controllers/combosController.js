@@ -3,12 +3,22 @@ var mongoose = require('mongoose');
 var boom = require('boom');
 
 exports.getCombos = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin', 'gerente', 'personal', 'cliente']
+  },
   handler: function(request, reply){
     var combos = combo.find({});
     reply(combos);
   }
 }
 exports.getComboId = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin', 'gerente', 'personal', 'cliente']
+  },
   handler : function(request, reply){
     combo.findOne({'_id' : request.params._id}, function(err, Combo){
       if(!err && Combo){
@@ -22,6 +32,11 @@ exports.getComboId = {
   }
 }
 exports.getComboName = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin', 'gerente']
+  },
   handler : function(request, reply){
     combo.find({'nombre' : request.params.nombre}, function(err, Combos){
       if(!err && Combos){
@@ -35,6 +50,11 @@ exports.getComboName = {
   }
 }
 exports.getComboPrecio = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin', 'gerente']
+  },
   handler : function(request, reply){
     combo.find({'precio' : request.params.precio}, function(err, Combos){
       if(!err && Combos){
@@ -48,6 +68,11 @@ exports.getComboPrecio = {
   }
 }
 exports.modifyCombo = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin', 'gerente']
+  },
   handler: function(request, reply){
     combo.update(
       {'_id': request.params._id},
@@ -69,6 +94,11 @@ exports.modifyCombo = {
   }
 }
 exports.deleteCombo = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin', 'gerente']
+  },
   handler: function(request, reply){
     combo.findOne({'_id' : request.params._id}, function(err, Combo){
       if(err){
@@ -83,6 +113,11 @@ exports.deleteCombo = {
   }
 }
 exports.createCombo = {
+  auth: {
+    mode:'required',
+    strategy:'session',
+    scope: ['admin', 'gerente']
+  },
   handler: function(request, reply){
     var newCombo = new combo({
       idProductos : request.payload.idProductos,
